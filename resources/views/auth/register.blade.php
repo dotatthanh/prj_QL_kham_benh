@@ -76,12 +76,12 @@
                                 <div class="row">
                                     <div class="col-7">
                                         <div class="text-primary p-4">
-                                            <h5 class="text-primary">Free Register</h5>
-                                            <p>Get your free Skote account now.</p>
+                                            <h5 class="text-primary">Đăng ký miễn phí</h5>
+                                            <p>Nhận tài khoản Skote miễn phí của bạn ngay bây giờ.</p>
                                         </div>
                                     </div>
                                     <div class="col-5 align-self-end">
-                                        <img src="assets\images\profile-img.png" alt="" class="img-fluid">
+                                        <img src="{{ asset('images\profile-img.png') }}" alt="" class="img-fluid">
                                     </div>
                                 </div>
                             </div>
@@ -90,7 +90,7 @@
                                     <a href="index.html">
                                         <div class="avatar-md profile-user-wid mb-4">
                                             <span class="avatar-title rounded-circle bg-light">
-                                                <img src="assets\images\logo.svg" alt="" class="rounded-circle" height="34">
+                                                <img src="{{ asset('images\logo.svg') }}" alt="" class="rounded-circle" height="34">
                                             </span>
                                         </div>
                                     </a>
@@ -109,23 +109,33 @@
                                         </div>
                 
                                         <div class="form-group">
-                                            <label for="name">Name</label>
-                                            <input type="text" class="form-control" id="name" placeholder="Enter name" name="name">
+                                            <label for="name">Họ và tên</label>
+                                            <input type="text" class="form-control" id="name" placeholder="Nhập họ và tên" name="name">
                                         </div>
                 
                                         <div class="form-group">
-                                            <label for="userpassword">Password</label>
-                                            <input type="password" class="form-control" id="userpassword" placeholder="Enter password" required autocomplete="new-password" name="password">
+                                            <label for="userpassword">Mật khẩu</label>
+                                            <input type="password" class="form-control" id="userpassword" placeholder="Nhập mật khẩu" required autocomplete="new-password" name="password">
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="password_confirmation">Confirm Password</label>
-                                            <input type="password" class="form-control" id="password_confirmation" placeholder="Enter Confirm Password" name="password_confirmation" required>        
+                                            <label for="password_confirmation">Xác nhận mật khẩu</label>
+                                            <input type="password" class="form-control" id="password_confirmation" placeholder="Nhập xác nhận mật khẩu" name="password_confirmation" required>        
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="birthday">Birthday</label>
-                                            <input type="date" class="form-control" id="birthday" name="birthday">
+                                            <label for="birthday">Ngày sinh</label>
+                                            <div class="docs-datepicker">
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control docs-date" name="birthday" placeholder="Chọn ngày sinh" autocomplete="off">
+                                                    <div class="input-group-append">
+                                                        <button type="button" class="btn btn-outline-secondary docs-datepicker-trigger" disabled="">
+                                                            <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="docs-datepicker-container"></div>
+                                            </div>
                                         </div>
 
                                         <div class="form-group">
@@ -142,17 +152,17 @@
 
 
                                         <div class="form-group">
-                                            <label for="address">Address</label>
-                                            <input type="text" class="form-control" id="address" placeholder="Enter address" name="address">
+                                            <label for="address">Địa chỉ</label>
+                                            <input type="text" class="form-control" id="address" placeholder="Nhập địa chỉ" name="address">
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="avatar">Avatar</label>
-                                            <input type="file" class="form-control" id="avatar" placeholder="Enter avatar" name="avatar">
+                                            <label for="avatar">Ảnh đại diện</label>
+                                            <input type="file" class="form-control" id="avatar" name="avatar">
                                         </div>
                     
                                         <div class="mt-4">
-                                            <button class="btn btn-primary btn-block waves-effect waves-light" type="submit">Register</button>
+                                            <button class="btn btn-primary btn-block waves-effect waves-light" type="submit">Đăng ký</button>
                                         </div>
 
                                         {{-- <div class="mt-4 text-center">
@@ -188,8 +198,8 @@
                         <div class="mt-5 text-center">
                             
                             <div>
-                                <p>Already have an account ? <a href="{{ route('login') }}" class="font-weight-medium text-primary"> Login</a> </p>
-                                <p>© 2020 Skote. Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesbrand</p>
+                                <p>Bạn có sẵn sàng tạo tài khoản ? <a href="{{ route('login') }}" class="font-weight-medium text-primary"> Đăng nhập</a> </p>
+                                <p>© 2020 Skote. Được phát hành bởi <i class="mdi mdi-heart text-danger"></i> Themesbrand</p>
                             </div>
                         </div>
 
@@ -198,4 +208,30 @@
             </div>
         </div>
     @endsection('content')
+
+    @push('js')
+        <!-- select 2 plugin -->
+        <script src="{{ asset('libs\select2\js\select2.min.js') }}"></script>
+
+        <!-- init js -->
+        <script src="{{ asset('js\pages\ecommerce-select2.init.js') }}"></script>
+
+        <!-- datepicker -->
+        <script src="{{ asset('libs\bootstrap-datepicker\js\bootstrap-datepicker.min.js') }}"></script>
+        <script src="{{ asset('libs\bootstrap-colorpicker\js\bootstrap-colorpicker.min.js') }}"></script>
+        <script src="{{ asset('libs\bootstrap-timepicker\js\bootstrap-timepicker.min.js') }}"></script>
+        <script src="{{ asset('libs\bootstrap-touchspin\jquery.bootstrap-touchspin.min.js') }}"></script>
+        <script src="{{ asset('libs\bootstrap-maxlength\bootstrap-maxlength.min.js') }}"></script>
+        <script src="{{ asset('libs\@chenfengyuan\datepicker\datepicker.min.js') }}"></script>
+        <!-- form advanced init -->
+        <script src="{{ asset('js\pages\form-advanced.init.js') }}"></script>
+    @endpush
+
+    @push('css')
+        <!-- datepicker css -->
+        <link href="{{ asset('libs\bootstrap-datepicker\css\bootstrap-datepicker.min.css') }}" rel="stylesheet" type="text/css">
+        <link href="{{ asset('libs\bootstrap-colorpicker\css\bootstrap-colorpicker.min.css') }}" rel="stylesheet" type="text/css">
+        <link href="{{ asset('libs\bootstrap-timepicker\css\bootstrap-timepicker.min.css') }}" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="{{ asset('libs\@chenfengyuan\datepicker\datepicker.min.css') }}">
+    @endpush
 </x-app-layout>

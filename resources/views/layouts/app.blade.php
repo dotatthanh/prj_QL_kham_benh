@@ -50,6 +50,9 @@
         <!-- App favicon -->
         <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}">
 
+        @yield('css')
+        @stack('css')
+
         <!-- Bootstrap Css -->
         <link href="{{ asset('css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css">
         <!-- Icons Css -->
@@ -66,10 +69,8 @@
         <script src="{{ asset('libs/simplebar/simplebar.min.js') }}"></script>
         <script src="{{ asset('libs/node-waves/waves.min.js') }}"></script>
 
-        <!-- apexcharts -->
-        <script src="{{ asset('libs/apexcharts/apexcharts.min.js') }}"></script>
-
-        <script src="{{ asset('js/pages/dashboard.init.js') }}"></script>
+        @yield('js')
+        @stack('js')
 
         <!-- App js -->
         <script src="{{ asset('js/app.js') }}"></script>

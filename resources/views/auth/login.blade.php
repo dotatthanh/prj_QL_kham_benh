@@ -73,8 +73,8 @@
                                 <div class="row">
                                     <div class="col-7">
                                         <div class="text-primary p-4">
-                                            <h5 class="text-primary">Welcome Back !</h5>
-                                            <p>Sign in to continue to Skote.</p>
+                                            <h5 class="text-primary">Chào mừng trở lại !</h5>
+                                            <p>Đăng nhập để tiếp tục Stoke.</p>
                                         </div>
                                     </div>
                                     <div class="col-5 align-self-end">
@@ -106,12 +106,12 @@
                                         @csrf
                                         <div class="form-group">
                                             <label for="email">Email</label>
-                                            <input type="email" class="form-control" id="email" placeholder="Enter email" value="{{ old('email') }}" name="email">
+                                            <input type="email" class="form-control" id="email" placeholder="Nhập email" value="{{ old('email') }}" name="email">
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="userpassword">Password</label>
-                                            <input type="password" class="form-control" id="userpassword" placeholder="Enter password" name="password" autocomplete="current-password">
+                                            <label for="userpassword">Mật khẩu</label>
+                                            <input type="password" class="form-control" id="userpassword" placeholder="Nhập mật khẩu" name="password" autocomplete="current-password">
                                         </div>
 
                                         
@@ -122,7 +122,7 @@
                                         </div> --}}
 
                                         <div class="mt-3">
-                                            <button class="btn btn-primary btn-block waves-effect waves-light" type="submit">Log In</button>
+                                            <button class="btn btn-primary btn-block waves-effect waves-light" type="submit">Đăng nhập</button>
                                         </div>
 
 
@@ -152,7 +152,7 @@
                                         @if (Route::has('password.request'))
                                             <div class="mt-4 text-center">
                                                 <a href="{{ route('password.request') }}" class="text-muted">
-                                                    <i class="mdi mdi-lock mr-1"></i> Forgot your password?
+                                                    <i class="mdi mdi-lock mr-1"></i> Quên mật khẩu?
                                                 </a>
                                             </div>
                                         @endif
@@ -164,8 +164,8 @@
                         <div class="mt-5 text-center">
 
                             <div>
-                                <p>Don't have an account ? <a href="{{ route('register') }}" class="font-weight-medium text-primary"> Signup now </a> </p>
-                                <p>© 2020 Skote. Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesbrand</p>
+                                <p>Bạn chưa có tài khoản ? <a href="{{ route('register') }}" class="font-weight-medium text-primary"> Đăng ký ngay </a> </p>
+                                <p>© 2020 Skote. Được phát hành bởi <i class="mdi mdi-heart text-danger"></i> Themesbrand</p>
                             </div>
                         </div>
 
