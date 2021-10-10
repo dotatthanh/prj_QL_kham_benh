@@ -4,24 +4,24 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBillsTable extends Migration
+class CreatePatientsTable extends Migration
 {
     /**
      * Run the migrations.
      *
      * @return void
-     * Bảng hóa đơn thu tiền
      */
     public function up()
     {
-        Schema::create('bills', function (Blueprint $table) {
+        Schema::create('patients', function (Blueprint $table) {
             $table->id();
-            $table->integer('medical_examiner_id');
-            $table->integer('consulting_room_id')->nullable();
-            $table->integer('medical_service_id')->nullable();
             $table->string('code');
-            $table->integer('total_money');
-            $table->integer('type');
+            $table->string('name');
+            $table->string('avatar')->nullasble();
+            $table->string('sex');
+            $table->string('address');
+            $table->date('birthday');
+            $table->integer('phone');
             $table->timestamps();
         });
     }
@@ -33,6 +33,6 @@ class CreateBillsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bills');
+        Schema::dropIfExists('patients');
     }
 }
