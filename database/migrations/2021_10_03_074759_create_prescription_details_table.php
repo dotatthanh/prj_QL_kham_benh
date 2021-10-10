@@ -15,11 +15,12 @@ class CreatePrescriptionDetailsTable extends Migration
     {
         Schema::create('prescription_details', function (Blueprint $table) {
             $table->id();
-            $table->integer('prescription__id');
+            $table->integer('prescription_id');
             $table->integer('medicine_id');
             $table->integer('amount');
             $table->integer('price');
             $table->integer('total_money');
+            $table->string('use');
             $table->timestamps();
         });
     }

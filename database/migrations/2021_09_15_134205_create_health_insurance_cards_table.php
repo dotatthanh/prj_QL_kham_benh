@@ -16,10 +16,13 @@ class CreateHealthInsuranceCardsTable extends Migration
     {
         Schema::create('health_insurance_cards', function (Blueprint $table) {
             $table->id();
-            $table->integer('medical_examiner_id');
+            $table->integer('patient_id');
             $table->string('code');
             $table->string('hospital');
             $table->date('use_value');
+            $table->integer('id_card');
+            $table->date('date_of_issue');
+            $table->date('issued_by');
             $table->timestamps();
         });
     }

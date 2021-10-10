@@ -16,12 +16,13 @@ class CreateMedicalServicesTable extends Migration
     {
         Schema::create('medical_services', function (Blueprint $table) {
             $table->id();
-            $table->integer('consulting_room_id');
+            // $table->integer('consulting_room_id');
+            $table->string('code');
             $table->string('name');
-            $table->integer('health_insurance_price');
+            // $table->integer('health_insurance_price');
             $table->integer('price');
-            $table->string('unit');
-            $table->text('form');
+            // $table->string('unit');
+            // $table->text('form');
             $table->timestamps();
         });
     }
