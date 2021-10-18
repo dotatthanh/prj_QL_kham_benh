@@ -105,7 +105,7 @@
 
                                         <div class="form-group">
                                             <label for="useremail">Email</label>
-                                            <input type="email" class="form-control" id="useremail" placeholder="Enter email" name="email">        
+                                            <input type="email" class="form-control" id="useremail" placeholder="Nhập email" name="email">        
                                         </div>
                 
                                         <div class="form-group">
@@ -139,13 +139,13 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="sex">Sex</label>
+                                            <label for="gender">Giới tính</label>
                                             <div class="form-check form-check">
-                                                <input type="radio" class="form-check-input" id="nam" name="sex" value="Nam" checked>
+                                                <input type="radio" class="form-check-input" id="nam" name="gender" value="Nam" checked>
                                                 <label class="form-check-label" for="nam">Nam</label>
                                             </div>
                                             <div class="form-check form-check">
-                                                <input type="radio" class="form-check-input" id="nu" name="sex" value="Nữ">
+                                                <input type="radio" class="form-check-input" id="nu" name="gender" value="Nữ">
                                                 <label class="form-check-label" for="nu">Nữ</label>
                                             </div>
                                         </div>
@@ -225,6 +225,11 @@
         <script src="{{ asset('libs\@chenfengyuan\datepicker\datepicker.min.js') }}"></script>
         <!-- form advanced init -->
         <script src="{{ asset('js\pages\form-advanced.init.js') }}"></script>
+        <script type="text/javascript">
+            $('.docs-date').datepicker({
+                format: 'dd-mm-yyyy',
+            });
+        </script>
     @endpush
 
     @push('css')
