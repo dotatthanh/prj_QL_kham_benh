@@ -17,11 +17,11 @@ class CreatePatientsTable extends Migration
             $table->id();
             $table->string('code');
             $table->string('name');
-            $table->string('avatar')->nullasble();
-            $table->string('sex');
+            $table->string('avatar')->nullable();
+            $table->string('gender');
             $table->string('address');
             $table->date('birthday');
-            $table->integer('phone');
+            $table->string('phone');
             $table->timestamps();
         });
     }

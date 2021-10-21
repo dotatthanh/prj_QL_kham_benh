@@ -17,9 +17,7 @@ class CreateServiceVouchersTable extends Migration
             $table->id();
             $table->string('code');
             $table->integer('patient_id');
-            $table->integer('medical_service_id')->nullable();
-            $table->integer('consulting_room_id')->nullable();
-            // $table->integer('amount');
+            $table->integer('medical_service_id');
             $table->integer('user_id');
             $table->date('start_date');
             $table->date('end_date');
