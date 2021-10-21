@@ -500,12 +500,12 @@
                                 </a>
                             </li>
 
-                            {{-- <li>
+                            <li>
                                 <a href="{{ route('permissions.index') }}" class=" waves-effect">
                                     <i class="bx bx-user-circle"></i>
                                     <span>Quyền</span>
                                 </a>
-                            </li> --}}
+                            </li>
 
                             {{-- <li class="menu-title">Apps</li>
 
