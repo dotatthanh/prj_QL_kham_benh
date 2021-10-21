@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>@yield('title')</title>
 
         <meta content="Premium Multipurpose Admin & Dashboard Template" name="description">
         <meta content="Themesbrand" name="author">
@@ -14,6 +14,9 @@
 
         @yield('css')
         @stack('css')
+
+        <!-- Toastr Css -->
+        <link rel="stylesheet" type="text/css" href="{{ asset('libs\toastr\build\toastr.min.css') }}">
 
         <!-- Bootstrap Css -->
         <link href="{{ asset('css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css">
@@ -391,7 +394,8 @@
                             </button>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <!-- item-->
-                                <a class="dropdown-item" href="#"><i class="bx bx-user font-size-16 align-middle mr-1"></i> Profile</a>
+                                <a class="dropdown-item" href="{{ route('users.show', auth()->user()) }}"><i class="bx bx-user font-size-16 align-middle mr-1"></i> Thông tin cá nhân</a>
+                                <a class="dropdown-item" href="#"><i class="bx bx-key font-size-16 align-middle mr-1"></i> Đổi mật khẩu</a>
                                 {{-- <a class="dropdown-item" href="#"><i class="bx bx-wallet font-size-16 align-middle mr-1"></i> My Wallet</a>
                                 <a class="dropdown-item d-block" href="#"><span class="badge badge-success float-right">11</span><i class="bx bx-wrench font-size-16 align-middle mr-1"></i> Settings</a>
                                 <a class="dropdown-item" href="#"><i class="bx bx-lock-open font-size-16 align-middle mr-1"></i> Lock screen</a> --}}
@@ -455,11 +459,53 @@
                             </li> --}}
 
                             <li>
+                                <a href="{{ route('consulting_rooms.index') }}" class=" waves-effect">
+                                    <i class="bx bx-user-circle"></i>
+                                    <span>Phòng khám</span>
+                                </a>
+                            </li>
+
+                            {{-- <li>
+                                <a href="{{ route('medical_services.index') }}" class=" waves-effect">
+                                    <i class="bx bx-user-circle"></i>
+                                    <span>Dịch vụ khám</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="{{ route('types.index') }}" class=" waves-effect">
+                                    <i class="bx bx-user-circle"></i>
+                                    <span>Loại thuốc</span>
+                                </a>
+                            </li>
+
+                            <li>
                                 <a href="{{ route('patients.index') }}" class=" waves-effect">
-                                    <i class="bx bx-calendar"></i>
+                                    <i class="bx bx-user-circle"></i>
                                     <span>Bệnh nhân</span>
                                 </a>
                             </li>
+
+                            <li>
+                                <a href="{{ route('users.index') }}" class=" waves-effect">
+                                    <i class="bx bx-user-circle"></i>
+                                    <span>Tài khoản</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="{{ route('roles.index') }}" class=" waves-effect">
+                                    <i class="bx bx-user-circle"></i>
+                                    <span>Vai trò</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="{{ route('permissions.index') }}" class=" waves-effect">
+                                    <i class="bx bx-user-circle"></i>
+                                    <span>Quyền</span>
+                                </a>
+                            </li> --}}
 
                             {{-- <li class="menu-title">Apps</li>
 
@@ -789,16 +835,63 @@
         <!-- Right bar overlay-->
         {{-- <div class="rightbar-overlay"></div> --}}
 
-
-
-
-
-
         <script src="{{ asset('libs/jquery/jquery.min.js') }}"></script>
         <script src="{{ asset('libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
         <script src="{{ asset('libs/metismenu/metisMenu.min.js') }}"></script>
         <script src="{{ asset('libs/simplebar/simplebar.min.js') }}"></script>
         <script src="{{ asset('libs/node-waves/waves.min.js') }}"></script>
+        <!-- toastr plugin -->
+        <script src="{{ asset('libs\toastr\build\toastr.min.js') }}"></script>
+
+        <script type="text/javascript">
+            // add class paginate theme
+            $('ul.pagination').addClass('pagination-rounded justify-content-center mt-4');
+            
+            // toastr noti
+            @if(Session::has('alert-success'))
+                Command: toastr["success"]("{{ Session::get('alert-success') }}")
+
+                toastr.options = {
+                  "closeButton": false,
+                  "debug": false,
+                  "newestOnTop": false,
+                  "progressBar": false,
+                  "positionClass": "toast-top-right",
+                  "preventDuplicates": false,
+                  "onclick": null,
+                  "showDuration": 300,
+                  "hideDuration": 1000,
+                  "timeOut": 5000,
+                  "extendedTimeOut": 1000,
+                  "showEasing": "swing",
+                  "hideEasing": "linear",
+                  "showMethod": "fadeIn",
+                  "hideMethod": "fadeOut"
+                }
+            @endif
+
+            @if(Session::has('alert-error'))
+                Command: toastr["error"]("{{ Session::get('alert-error') }}")
+
+                toastr.options = {
+                  "closeButton": false,
+                  "debug": false,
+                  "newestOnTop": false,
+                  "progressBar": false,
+                  "positionClass": "toast-top-right",
+                  "preventDuplicates": false,
+                  "onclick": null,
+                  "showDuration": 300,
+                  "hideDuration": 1000,
+                  "timeOut": 5000,
+                  "extendedTimeOut": 1000,
+                  "showEasing": "swing",
+                  "hideEasing": "linear",
+                  "showMethod": "fadeIn",
+                  "hideMethod": "fadeOut"
+                }
+            @endif
+        </script>
 
         @yield('js')
         @stack('js')
