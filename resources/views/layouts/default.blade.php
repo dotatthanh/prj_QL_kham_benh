@@ -486,12 +486,12 @@
                                 </a>
                             </li>
 
-                            {{-- <li>
+                            <li>
                                 <a href="{{ route('users.index') }}" class=" waves-effect">
                                     <i class="bx bx-user-circle"></i>
                                     <span>Tài khoản</span>
                                 </a>
-                            </li> --}}
+                            </li>
 
                             <li>
                                 <a href="{{ route('roles.index') }}" class=" waves-effect">
