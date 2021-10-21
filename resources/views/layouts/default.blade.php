@@ -465,14 +465,14 @@
                                 </a>
                             </li>
 
-                            {{-- <li>
+                            <li>
                                 <a href="{{ route('medical_services.index') }}" class=" waves-effect">
                                     <i class="bx bx-user-circle"></i>
                                     <span>Dịch vụ khám</span>
                                 </a>
                             </li>
 
-                            <li>
+                            {{-- <li>
                                 <a href="{{ route('types.index') }}" class=" waves-effect">
                                     <i class="bx bx-user-circle"></i>
                                     <span>Loại thuốc</span>
