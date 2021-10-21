@@ -472,14 +472,14 @@
                                 </a>
                             </li>
 
-                            {{-- <li>
+                            <li>
                                 <a href="{{ route('types.index') }}" class=" waves-effect">
                                     <i class="bx bx-user-circle"></i>
                                     <span>Loại thuốc</span>
                                 </a>
                             </li>
 
-                            <li>
+                            {{-- <li>
                                 <a href="{{ route('patients.index') }}" class=" waves-effect">
                                     <i class="bx bx-user-circle"></i>
                                     <span>Bệnh nhân</span>
