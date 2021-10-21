@@ -17,15 +17,20 @@ class CreateHealthCertificationsTable extends Migration
         Schema::create('health_certifications', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('code');
-            $table->integer('parent_id');
+            $table->integer('patient_id');
+            $table->integer('consulting_room_id');
+            // $table->integer('medical_service_id')->nullable();
             $table->integer('user_id');
+            $table->date('date');
+            $table->string('code');
             $table->integer('status');
-            $table->integer('medical_examiner_id');
-            $table->integer('consulting_room_id')->nullable();
-            $table->integer('medical_service_id')->nullable();
-            // $table->text('form');
             $table->string('conclude');
+            $table->string('treatment_guide');
+            $table->string('suggestion');
+            $table->integer('number');
+            $table->integer('total_money');
+            // $table->integer('parent_id');
+            // $table->text('form');
             $table->integer('type');
             $table->timestamps();
         });

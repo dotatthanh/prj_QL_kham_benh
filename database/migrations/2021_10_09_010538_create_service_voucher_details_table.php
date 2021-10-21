@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePrescriptionsTable extends Migration
+class CreateServiceVoucherDetailsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreatePrescriptionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('prescriptions', function (Blueprint $table) {
+        Schema::create('service_voucher_details', function (Blueprint $table) {
             $table->id();
-            $table->string('code');
-            $table->integer('patient_id');
-            $table->integer('user_id');
-            $table->integer('total_money');
-            $table->string('status');
+            $table->integer('service_voucher_id');
+            $table->date('date');
+            $table->string('result');
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ class CreatePrescriptionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('prescriptions');
+        Schema::dropIfExists('service_voucher_details');
     }
 }
