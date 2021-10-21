@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Patient;
 use Illuminate\Http\Request;
+use App\Http\Requests\StorePatientRequest;
+use DB;
 
 class PatientController extends Controller
 {
@@ -12,9 +14,20 @@ class PatientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('patient.index');
+        $patients = Patient::paginate(10);
+
+        if ($request->search) {
+            $patients = Patient::where('name', 'like', '%'.$request->search.'%')->paginate(10);
+            $patients->appends(['search' => $request->search]);
+        }
+
+        $data = [
+            'patients' => $patients
+        ];
+
+        return view('patient.index', $data);
     }
 
     /**
@@ -33,9 +46,38 @@ class PatientController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StorePatientRequest $request)
     {
-        //
+        try {
+            DB::beginTransaction();
+
+            $file_path = '';
+            if ($request->file('avatar')) {
+                $name = time().'_'.$request->avatar->getClientOriginalName();
+                $filePath = $request->file('avatar')->storeAs('/avatar/patient', $name, 'public');
+                $file_path = 'storage/avatar/patient/'.$name;
+            }
+            
+            $create = Patient::create([
+                'code' => '',
+                'name' => $request->name,
+                'gender' => $request->gender,
+                'birthday' => date("Y-m-d", strtotime($request->birthday)),
+                'phone' => $request->phone,
+                'address' => $request->address,
+                'avatar' => $file_path,
+            ]);
+
+            $create->update([
+                'code' => 'BN'.str_pad($create->id, 6, '0', STR_PAD_LEFT)
+            ]);
+            
+            DB::commit();
+            return redirect()->route('patients.index')->with('alert-success','Thêm bệnh nhân thành công!');
+        } catch (Exception $e) {
+            DB::rollback();
+            return redirect()->back()->with('alert-error','Thêm bệnh nhân thất bại!');
+        }
     }
 
     /**
@@ -46,7 +88,7 @@ class PatientController extends Controller
      */
     public function show(Patient $patient)
     {
-        //
+
     }
 
     /**
@@ -57,7 +99,11 @@ class PatientController extends Controller
      */
     public function edit(Patient $patient)
     {
-        //
+        $data = [
+            'data_edit' => $patient
+        ];
+
+        return view('patient.edit', $data);
     }
 
     /**
@@ -67,9 +113,41 @@ class PatientController extends Controller
      * @param  \App\Models\Patient  $patient
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Patient $patient)
+    public function update(StorePatientRequest $request, Patient $patient)
     {
-        //
+        try {
+            DB::beginTransaction();
+
+            if ($request->file('avatar')) {
+                $name = time().'_'.$request->avatar->getClientOriginalName();
+                $filePath = $request->file('avatar')->storeAs('/avatar/patient', $name, 'public');
+                $file_path = 'storage/avatar/patient/'.$name;
+                
+                $patient->update([
+                    'name' => $request->name,
+                    'gender' => $request->gender,
+                    'birthday' => date("Y-m-d", strtotime($request->birthday)),
+                    'phone' => $request->phone,
+                    'address' => $request->address,
+                    'avatar' => $file_path,
+                ]);
+            }
+            else {
+                $patient->update([
+                    'name' => $request->name,
+                    'gender' => $request->gender,
+                    'birthday' => date("Y-m-d", strtotime($request->birthday)),
+                    'phone' => $request->phone,
+                    'address' => $request->address,
+                ]);
+            }
+            
+            DB::commit();
+            return redirect()->route('patients.index')->with('alert-success','Sửa bệnh nhân thành công!');
+        } catch (Exception $e) {
+            DB::rollback();
+            return redirect()->back()->with('alert-error','Sửa bệnh nhân thất bại!');
+        }
     }
 
     /**
@@ -80,6 +158,29 @@ class PatientController extends Controller
      */
     public function destroy(Patient $patient)
     {
-        //
+        try {
+            DB::beginTransaction();
+
+            if ($patient->healthCertifications->count() > 0) {
+                return redirect()->back()->with('alert-error','Xóa bệnh nhân thất bại! Bệnh nhân '.$patient->name.' đang có giấy khám bệnh.');
+            }
+            elseif ($patient->healthInsuranceCard) {
+                return redirect()->back()->with('alert-error','Xóa bệnh nhân thất bại! Bệnh nhân '.$patient->name.' đang có thẻ hiểm.');
+            }
+            elseif ($patient->serviceVouchers->count() > 0) {
+                return redirect()->back()->with('alert-error','Xóa bệnh nhân thất bại! Bệnh nhân '.$patient->name.' đang có phiếu dịch vụ.');
+            }
+            elseif ($patient->prescriptions->count() > 0) {
+                return redirect()->back()->with('alert-error','Xóa bệnh nhân thất bại! Bệnh nhân '.$patient->name.' đang có đơn thuốc.');
+            }
+
+            Patient::destroy($patient->id);
+            
+            DB::commit();
+            return redirect()->route('patients.index')->with('alert-success','Xóa bệnh nhân thành công!');
+        } catch (Exception $e) {
+            DB::rollback();
+            return redirect()->back()->with('alert-error','Xóa bệnh nhân thất bại!');
+        }
     }
 }
