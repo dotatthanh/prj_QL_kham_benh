@@ -18,11 +18,6 @@ class Medicine extends Model
     	'unit',
     ];
 
-    public function prescription()
-    {
-        return $this->belongsTo(Prescription::class);
-    }
-
     public function type()
     {
         return $this->belongsTo(Type::class);

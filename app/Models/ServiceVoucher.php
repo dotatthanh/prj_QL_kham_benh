@@ -13,12 +13,12 @@ class ServiceVoucher extends Model
     	'code',
     	'patient_id',
     	'medical_service_id',
+        'is_health_insurance_card',
     	'user_id',
     	'start_date',
     	'end_date',
     	'total_money',
-    	'status_examination',
-    	'status_payment',
+    	'status',
     ];
 
     public function patient()

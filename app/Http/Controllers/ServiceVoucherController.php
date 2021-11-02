@@ -2,8 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Patient;
+use App\Models\User;
+use App\Models\MedicalService;
 use App\Models\ServiceVoucher;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreServiceVoucherRequest;
+use DB;
+use Illuminate\Database\Eloquent\Builder;
 
 class ServiceVoucherController extends Controller
 {
@@ -12,9 +18,22 @@ class ServiceVoucherController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $service_vouchers = ServiceVoucher::paginate(10);
+
+        if ($request->search) {
+            $service_vouchers = ServiceVoucher::whereHas('patient', function (Builder $query) use ($request) {
+                $query->where('name', 'like', '%'.$request->search.'%');
+            })->paginate(10);
+            $service_vouchers->appends(['search' => $request->search]);
+        }
+
+        $data = [
+            'service_vouchers' => $service_vouchers
+        ];
+
+        return view('service-voucher.index', $data);
     }
 
     /**
@@ -24,7 +43,17 @@ class ServiceVoucherController extends Controller
      */
     public function create()
     {
-        //
+        $patients = Patient::all();
+        $users = User::all();
+        $medical_services = MedicalService::all();
+
+        $data = [
+            'medical_services' => $medical_services,
+            'patients' => $patients,
+            'users' => $users,
+        ];
+
+        return view('service-voucher.create', $data);
     }
 
     /**
@@ -33,9 +62,35 @@ class ServiceVoucherController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreServiceVoucherRequest $request)
     {
-        //
+        $is_health_insurance_card = $request->is_health_insurance_card ? 1 : 0;
+
+        try {
+            DB::beginTransaction();
+            
+            $create = ServiceVoucher::create([
+                'code' => '',
+                'patient_id' => $request->patient_id,
+                'medical_service_id' => $request->medical_service_id,
+                'user_id' => $request->user_id,
+                'start_date' => date("Y-m-d", strtotime($request->start_date)),
+                'end_date' => date("Y-m-d", strtotime($request->end_date)),
+                'total_money' => $request->total_money,
+                'status' => 0,
+                'is_health_insurance_card' => $is_health_insurance_card,
+            ]);
+
+            $create->update([
+                'code' => 'PDV'.str_pad($create->id, 6, '0', STR_PAD_LEFT)
+            ]);
+            
+            DB::commit();
+            return redirect()->route('service_vouchers.index')->with('alert-success','Thêm phiếu dịch vụ thành công!');
+        } catch (Exception $e) {
+            DB::rollback();
+            return redirect()->back()->with('alert-error','Thêm phiếu dịch vụ thất bại!');
+        }
     }
 
     /**
@@ -46,7 +101,18 @@ class ServiceVoucherController extends Controller
      */
     public function show(ServiceVoucher $serviceVoucher)
     {
-        //
+        $patients = Patient::all();
+        $users = User::all();
+        $medical_services = MedicalService::all();
+
+        $data = [
+            'medical_services' => $medical_services,
+            'patients' => $patients,
+            'users' => $users,
+            'data_edit' => $serviceVoucher,
+        ];
+
+        return view('service-voucher.show', $data);
     }
 
     /**
@@ -57,7 +123,18 @@ class ServiceVoucherController extends Controller
      */
     public function edit(ServiceVoucher $serviceVoucher)
     {
-        //
+        $patients = Patient::all();
+        $users = User::all();
+        $medical_services = MedicalService::all();
+
+        $data = [
+            'medical_services' => $medical_services,
+            'patients' => $patients,
+            'users' => $users,
+            'data_edit' => $serviceVoucher,
+        ];
+
+        return view('service-voucher.edit', $data);
     }
 
     /**
@@ -67,9 +144,29 @@ class ServiceVoucherController extends Controller
      * @param  \App\Models\ServiceVoucher  $serviceVoucher
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ServiceVoucher $serviceVoucher)
+    public function update(StoreServiceVoucherRequest $request, ServiceVoucher $serviceVoucher)
     {
-        //
+        $is_health_insurance_card = $request->is_health_insurance_card ? 1 : 0;
+
+        try {
+            DB::beginTransaction();
+            
+            $serviceVoucher->update([
+                'patient_id' => $request->patient_id,
+                'medical_service_id' => $request->medical_service_id,
+                'user_id' => $request->user_id,
+                'start_date' => date("Y-m-d", strtotime($request->start_date)),
+                'end_date' => date("Y-m-d", strtotime($request->end_date)),
+                'total_money' => $request->total_money,
+                'is_health_insurance_card' => $is_health_insurance_card,
+            ]);
+
+            DB::commit();
+            return redirect()->route('service_vouchers.index')->with('alert-success','Cập nhật phiếu dịch vụ thành công!');
+        } catch (Exception $e) {
+            DB::rollback();
+            return redirect()->back()->with('alert-error','Cập nhật phiếu dịch vụ thất bại!');
+        }
     }
 
     /**
@@ -80,6 +177,18 @@ class ServiceVoucherController extends Controller
      */
     public function destroy(ServiceVoucher $serviceVoucher)
     {
-        //
+        try {
+            DB::beginTransaction();
+
+            ServiceVoucher::destroy($serviceVoucher->id);
+
+            $serviceVoucher->serviceVoucherDetails()->delete();
+            
+            DB::commit();
+            return redirect()->route('service_vouchers.index')->with('alert-success','Xóa phiếu dịch vụ thành công!');
+        } catch (Exception $e) {
+            DB::rollback();
+            return redirect()->back()->with('alert-error','Xóa phiếu dịch vụ thất bại!');
+        }
     }
 }

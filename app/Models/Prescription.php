@@ -15,16 +15,13 @@ class Prescription extends Model
 	    'user_id',
 	    'total_money',
 	    'status',
+        'is_health_insurance_card',
+        'health_certification_id',
     ];
 
     public function patient()
     {
         return $this->belongsTo(Patient::class);
-    }
-
-    public function medicines()
-    {
-        return $this->hasMany(Medicine::class);
     }
 
     public function user()
@@ -35,5 +32,10 @@ class Prescription extends Model
     public function prescriptionDetails()
     {
         return $this->hasMany(PrescriptionDetail::class);
+    }
+
+    public function healthCertification()
+    {
+        return $this->belongsTo(HealthCertification::class);
     }
 }

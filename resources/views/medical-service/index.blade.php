@@ -72,7 +72,7 @@
                                                         {{ $mecical_service->name }}
                                                     </td>
                                                     <td>
-                                                        {{ $mecical_service->price }}
+                                                        {{ number_format($mecical_service->price, 0, ',', '.') }}
                                                     </td>
                                                     <td class="text-center">
                                                         <ul class="list-inline font-size-20 contact-links mb-0">

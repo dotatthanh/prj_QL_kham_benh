@@ -164,7 +164,7 @@
                         <div class="mt-5 text-center">
 
                             <div>
-                                <p>Bạn chưa có tài khoản ? <a href="{{ route('register') }}" class="font-weight-medium text-primary"> Đăng ký ngay </a> </p>
+                                {{-- <p>Bạn chưa có tài khoản ? <a href="{{ route('register') }}" class="font-weight-medium text-primary"> Đăng ký ngay </a> </p> --}}
                                 <p>© 2020 Skote. Được phát hành bởi <i class="mdi mdi-heart text-danger"></i> Themesbrand</p>
                             </div>
                         </div>

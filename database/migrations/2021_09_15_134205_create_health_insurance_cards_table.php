@@ -22,7 +22,7 @@ class CreateHealthInsuranceCardsTable extends Migration
             $table->date('use_value');
             $table->integer('id_card');
             $table->date('date_of_issue');
-            $table->date('issued_by');
+            $table->string('issued_by');
             $table->timestamps();
         });
     }

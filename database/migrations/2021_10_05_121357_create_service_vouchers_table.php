@@ -18,12 +18,12 @@ class CreateServiceVouchersTable extends Migration
             $table->string('code');
             $table->integer('patient_id');
             $table->integer('medical_service_id');
+            $table->integer('is_health_insurance_card');
             $table->integer('user_id');
             $table->date('start_date');
             $table->date('end_date');
             $table->integer('total_money');
-            $table->string('status_examination');
-            $table->string('status_payment');
+            $table->integer('status');
             $table->timestamps();
         });
     }
