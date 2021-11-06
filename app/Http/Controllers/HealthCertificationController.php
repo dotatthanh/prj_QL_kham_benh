@@ -223,4 +223,20 @@ class HealthCertificationController extends Controller
             return redirect()->back()->with('alert-error','Kết luận giấy khám bệnh thất bại!');
         }
     }
+
+    public function print(HealthCertification $healthCertification)
+    {
+        $patients = Patient::all();
+        $consulting_rooms = ConsultingRoom::all();
+        $users = User::all();
+
+        $data = [
+            'patients' => $patients,
+            'consulting_rooms' => $consulting_rooms,
+            'users' => $users,
+            'data_edit' => $healthCertification,
+        ];
+
+        return view('health-certification.print', $data);
+    }
 }

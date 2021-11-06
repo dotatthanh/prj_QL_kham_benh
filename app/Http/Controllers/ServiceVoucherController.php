@@ -191,4 +191,41 @@ class ServiceVoucherController extends Controller
             return redirect()->back()->with('alert-error','Xóa phiếu dịch vụ thất bại!');
         }
     }
+
+    public function completeExamination(ServiceVoucher $serviceVoucher)
+    {
+        try {
+            DB::beginTransaction();
+
+            if (!$serviceVoucher->serviceVoucherDetails->count()) {
+                return redirect()->back()->with('alert-error','Xác nhận hoàn thành khám thất bại! Phiếu dịch vụ chưa kết luận khám!');
+            }
+
+            $serviceVoucher->update([
+                'status' => 1,
+            ]);
+            
+            DB::commit();
+            return redirect()->route('service_vouchers.index')->with('alert-success','Xác nhận hoàn thành khám thành công!');
+        } catch (Exception $e) {
+            DB::rollback();
+            return redirect()->back()->with('alert-error','Xác nhận hoàn thành khám thất bại!');
+        }
+    }
+
+    public function print(ServiceVoucher $serviceVoucher)
+    {
+        $patients = Patient::all();
+        $users = User::all();
+        $medical_services = MedicalService::all();
+
+        $data = [
+            'medical_services' => $medical_services,
+            'patients' => $patients,
+            'users' => $users,
+            'data_edit' => $serviceVoucher,
+        ];
+
+        return view('service-voucher.print', $data);
+    }
 }

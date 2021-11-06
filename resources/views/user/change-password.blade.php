@@ -16,7 +16,6 @@
 
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item"><a href="{{ route('users.index') }}" title="Quản lý tài khoản" data-toggle="tooltip" data-placement="top">Quản lý tài khoản</a></li>
                                     <li class="breadcrumb-item active">Đổi mật khẩu</li>
                                 </ol>
                             </div>

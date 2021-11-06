@@ -16,7 +16,7 @@
 
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item"><a href="javascript: void(0);" title="Quản lý" data-toggle="tooltip" data-placement="top">Quản lý</a></li>
+                                    <li class="breadcrumb-item">Cài đặt</li>
                                     <li class="breadcrumb-item active">Danh sách vai trò</li>
                                 </ol>
                             </div>
@@ -43,11 +43,6 @@
                                                 <i class="bx bx-search-alt search-icon font-size-16 align-middle mr-2"></i> Tìm kiếm
                                             </button>
                                         </div>
-                                        {{-- <div class="col-sm-7">
-                                            <div class="text-sm-right">
-                                                <a href="{{ route('permissions.create') }}" class="text-white btn btn-success btn-rounded waves-effect waves-light mb-2 mr-2"><i class="mdi mdi-plus mr-1"></i> Thêm quyền</a>
-                                            </div>
-                                        </div> --}}<!-- end col-->
                                     </div>
                                 </form>
 
@@ -69,18 +64,11 @@
                                                     <td class="text-center">
                                                         @if ($role->id != 1)
                                                         <ul class="list-inline font-size-20 contact-links mb-0">
+                                                            @can('Chỉnh sửa quyền')
                                                             <li class="list-inline-item px">
                                                                 <a href="{{ route('permissions.edit', $role->id) }}" data-toggle="tooltip" data-placement="top" title="Sửa"><i class="mdi mdi-pencil text-success"></i></a>
                                                             </li>
-
-                                                            {{-- <li class="list-inline-item px">
-                                                                <form method="post" action="{{ route('permissions.destroy', $role->id) }}">
-                                                                    @csrf
-                                                                    @method('DELETE')
-                                                                    
-                                                                    <button type="submit" data-toggle="tooltip" data-placement="top" title="Xóa" class="border-0 bg-white"><i class="mdi mdi-trash-can text-danger"></i></button>
-                                                                </form>
-                                                            </li> --}}
+                                                            @endcan
                                                         </ul>
                                                         @endif
                                                     </td>

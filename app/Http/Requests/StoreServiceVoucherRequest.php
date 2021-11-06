@@ -28,7 +28,7 @@ class StoreServiceVoucherRequest extends FormRequest
             'medical_service_id' => 'required', 
             'user_id' => 'required', 
             'start_date' => 'required|date', 
-            'end_date' => 'required|date', 
+            'end_date' => 'required|date|after_or_equal:start_date', 
             'total_money' => 'required|numeric|min:0',
         ];
     }
@@ -41,10 +41,11 @@ class StoreServiceVoucherRequest extends FormRequest
             'user_id.required' => 'Bác sĩ là trường bắt buộc.', 
             'total_money.required' => 'Giá là trường bắt buộc.',
             'total_money.min' => 'Giá nhỏ nhất là :min VNĐ.',
-            'start_date.required' => 'Từ ngày là trường bắt buộc.',
-            'start_date.date' => 'Từ ngày không đúng định dạng.',
-            'end_date.required' => 'Đến ngày là trường bắt buộc.',
-            'end_date.date' => 'Đến ngày không đúng định dạng.',
+            'start_date.required' => 'Ngày bắt đầu là trường bắt buộc.',
+            'start_date.date' => 'Ngày bắt đầu không đúng định dạng.',
+            'end_date.required' => 'Ngày kết thúc là trường bắt buộc.',
+            'end_date.date' => 'Ngày kết thúc không đúng định dạng.',
+            'end_date.after_or_equal' => 'Ngày kết thúc phải lớn hơn hoặc bằng ngày bắt đầu.',
         ];
     }
 }

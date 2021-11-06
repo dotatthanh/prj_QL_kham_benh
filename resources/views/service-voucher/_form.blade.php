@@ -43,7 +43,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="start_date">Từ ngày <span class="text-danger">*</span></label>
+                            <label for="start_date">Ngày bắt đầu <span class="text-danger">*</span></label>
                             <div class="docs-datepicker">
                                 <div class="input-group">
                                     <input type="text" class="form-control docs-date" name="start_date" placeholder="Chọn ngày" autocomplete="off" value="{{ old('start_date', isset($data_edit->start_date) ? date('d-m-Y', strtotime($data_edit->start_date)) : '') }}">
@@ -80,7 +80,7 @@
                 </div>
                 
                 <div class="form-group">
-                    <label for="end_date">Đến ngày <span class="text-danger">*</span></label>
+                    <label for="end_date">Ngày kết thúc <span class="text-danger">*</span></label>
                     <div class="docs-datepicker">
                         <div class="input-group">
                             <input type="text" class="form-control docs-date" name="end_date" placeholder="Chọn ngày" autocomplete="off" value="{{ old('end_date', isset($data_edit->end_date) ? date('d-m-Y', strtotime($data_edit->end_date)) : '') }}">

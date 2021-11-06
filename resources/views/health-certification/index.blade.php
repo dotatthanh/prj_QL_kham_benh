@@ -43,11 +43,14 @@
                                                 <i class="bx bx-search-alt search-icon font-size-16 align-middle mr-2"></i> Tìm kiếm
                                             </button>
                                         </div>
+
+                                        @can('Thêm giấy khám bệnh')
                                         <div class="col-sm-7">
                                             <div class="text-sm-right">
                                                 <a href="{{ route('health_certifications.create') }}" class="text-white btn btn-success btn-rounded waves-effect waves-light mb-2 mr-2"><i class="mdi mdi-plus mr-1"></i> Thêm giấy khám bệnh</a>
                                             </div>
                                         </div><!-- end col-->
+                                        @endcan
                                     </div>
                                 </form>
 
@@ -55,7 +58,6 @@
                                     <table class="table table-centered table-nowrap">
                                         <thead class="thead-light">
                                             <tr>
-                                                {{-- <th class="text-center">STT</th> --}}
                                                 <th class="text-center">STT</th>
                                                 <th>Mã</th>
                                                 <th>Tên bệnh nhân</th>
@@ -63,19 +65,13 @@
                                                 <th>Phòng khám</th>
                                                 <th>Bác sĩ</th>
                                                 <th>Ngày</th>
-                                                {{-- <th>Kết luận</th>
-                                                <th>Hướng dẫn điều trị</th>
-                                                <th>Đề nghị khám lâm sàng</th> --}}
-                                                {{-- <th>Tổng tiền (VNĐ)</th> --}}
                                                 <th>Trạng thái</th>
                                                 <th class="text-center">Hành động</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {{-- @php ($stt = 1) --}}
                                             @foreach ($health_certifications as $health_certification)
                                                 <tr>
-                                                    {{-- <td class="text-center">{{ $stt++ }}</td> --}}
                                                     <td class="text-center">{{ $health_certification->number }}</td>
                                                     <td>{{ $health_certification->code }}</td>
                                                     <td>
@@ -87,10 +83,6 @@
                                                     <td>{{ $health_certification->consultingRoom->name }}</td>
                                                     <td>{{ $health_certification->user->name }}</td>
                                                     <td>{{ date("d-m-Y", strtotime($health_certification->created_at)) }}</td>
-                                                    {{-- <td>{{ $health_certification->conclude }}</td>
-                                                    <td>{{ $health_certification->treatment_guide }}</td>
-                                                    <td>{{ $health_certification->suggestion }}</td> --}}
-                                                    {{-- <td>{{ number_format($health_certification->total_money, 0, ',', '.') }}</td> --}}
                                                     <td>
                                                         @if ($health_certification->status)
                                                             <label class="btn btn-success waves-effect waves-light">
@@ -102,20 +94,26 @@
                                                     </td>
                                                     <td class="text-center">
                                                         <ul class="list-inline font-size-20 contact-links mb-0">
+                                                            @can('Xem thông tin giấy khám bệnh')
                                                             <li class="list-inline-item px">
                                                                 <a href="{{ route('health_certifications.show', $health_certification->id) }}" data-toggle="tooltip" data-placement="top" title="Xem thông tin"><i class="bx bx-user-circle text-success"></i></a>
                                                             </li>
-
+                                                            @endcan
 
                                                             @if ($health_certification->status == 0)
+                                                                @can('Kết luận khám giấy khám bệnh')
                                                                 <li class="list-inline-item px">
                                                                     <a href="{{ route('health_certifications.conclude', $health_certification->id) }}" data-toggle="tooltip" data-placement="top" title="Kết luận khám"><i class="bx bxs-calendar-check text-success"></i></a>
                                                                 </li>
-                                                                
+                                                                @endcan
+
+                                                                @can('Chỉnh sửa giấy khám bệnh')
                                                                 <li class="list-inline-item px">
                                                                     <a href="{{ route('health_certifications.edit', $health_certification->id) }}" data-toggle="tooltip" data-placement="top" title="Sửa"><i class="mdi mdi-pencil text-success"></i></a>
                                                                 </li>
+                                                                @endcan
                                                                 
+                                                                @can('Xóa giấy khám bệnh')
                                                                 <li class="list-inline-item px">
                                                                     <form method="post" action="{{ route('health_certifications.destroy', $health_certification->id) }}">
                                                                         @csrf
@@ -124,12 +122,21 @@
                                                                         <button type="submit" data-toggle="tooltip" data-placement="top" title="Xóa" class="border-0 bg-white"><i class="mdi mdi-trash-can text-danger"></i></button>
                                                                     </form>
                                                                 </li>
+                                                                @endcan
                                                             @else
                                                                 @if (!$health_certification->prescription)
+                                                                    @can('Thêm đơn thuốc')
                                                                     <li class="list-inline-item px">
                                                                         <a href="{{ route('prescriptions.create', ['health_certification_id' => $health_certification->id]) }}" data-toggle="tooltip" data-placement="top" title="Kê đơn thuốc"><i class="bx bxs-calendar-check text-success"></i></a>
                                                                     </li>
+                                                                    @endcan
                                                                 @endif
+
+                                                                @can('In giấy khám bệnh')
+                                                                <li class="list-inline-item px">
+                                                                    <a href="{{ route('health_certifications.print', $health_certification->id) }}" data-toggle="tooltip" data-placement="top" title="In giấy khám bệnh"><i class="bx bx-printer text-success"></i></a>
+                                                                </li>
+                                                                @endcan
                                                             @endif
 
                                                         </ul>

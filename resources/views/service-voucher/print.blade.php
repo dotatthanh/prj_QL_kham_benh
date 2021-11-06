@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-@section('title') Thông tin phiếu dịch vụ @endsection
+@section('title') In phiếu dịch vụ @endsection
 
 @section('content')
     <div class="main-content">
@@ -12,12 +12,12 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="page-title-box d-flex align-items-center justify-content-between">
-                            <h4 class="mb-0 font-size-18">Thông tin phiếu dịch vụ</h4>
+                            <h4 class="mb-0 font-size-18">In phiếu dịch vụ</h4>
 
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
                                     <li class="breadcrumb-item"><a href="{{ route('service_vouchers.index') }}" title="Quản lý phiếu dịch vụ" data-toggle="tooltip" data-placement="top">Quản lý phiếu dịch vụ</a></li>
-                                    <li class="breadcrumb-item active">Thông tin phiếu dịch vụ</li>
+                                    <li class="breadcrumb-item active">In phiếu dịch vụ</li>
                                 </ol>
                             </div>
 
@@ -206,6 +206,10 @@
     <script type="text/javascript">
         $('.docs-date').datepicker({
             format: 'dd-mm-yyyy',
+        });
+
+        $(document).ready(function() {
+            window.print();
         });
     </script>
 @endpush

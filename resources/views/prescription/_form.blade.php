@@ -81,7 +81,7 @@
                 </div>
             </div>
         @else
-            @if ($data_edit->health_certification_id)
+            @if (isset($data_edit->health_certification_id))
                 <input type="number" hidden name="patient_id" value="{{ $data_edit->patient_id }}">
                 <input type="number" hidden name="user_id" value="{{ $data_edit->user_id }}">
             @endif
@@ -95,7 +95,7 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="patient_id">Tên bệnh nhân <span class="text-danger">*</span></label>
-                                <select class="form-control select2" name="patient_id" onchange="getInsuranceCard($(this).val())" {{ $data_edit->health_certification_id ? 'disabled' : '' }}>
+                                <select class="form-control select2" name="patient_id" onchange="getInsuranceCard($(this).val())" {{ isset($data_edit->health_certification_id) ? 'disabled' : '' }}>
                                     <option value="">Chọn bệnh nhân</option>
                                     @foreach ($patients as $patient)
                                         <option value="{{ $patient->id }}" {{ isset($data_edit->patient_id) && $data_edit->patient_id == $patient->id ? 'selected' : '' }}>{{ $patient->name }}</option>
@@ -120,7 +120,7 @@
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label for="user_id">Bác sĩ <span class="text-danger">*</span></label>
-                        <select class="form-control select2" name="user_id" {{ $data_edit->health_certification_id ? 'disabled' : '' }}>
+                        <select class="form-control select2" name="user_id" {{ isset($data_edit->health_certification_id) ? 'disabled' : '' }}>
                             <option value="">Chọn bác sĩ</option>
                             @foreach ($users as $user)
                                 <option value="{{ $user->id }}" {{ isset($data_edit->user_id) && $data_edit->user_id == $user->id ? 'selected' : '' }}>{{ $user->name }}</option>
@@ -207,6 +207,6 @@
 <div class="card">
     <div class="card-body">
         <button type="submit" class="btn btn-primary mr-1 waves-effect waves-light">Lưu lại</button>
-        <a href="{{ route('prescriptions.index') }}" class="btn btn-secondary waves-effect">Quay lại</a>
+        <a href="{{ isset($health_certification_id) ? route('health_certifications.index') : route('prescriptions.index') }}" class="btn btn-secondary waves-effect">Quay lại</a>
     </div>
 </div>

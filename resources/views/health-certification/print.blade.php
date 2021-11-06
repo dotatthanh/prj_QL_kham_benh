@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-@section('title') Thông tin giấy khám bệnh @endsection
+@section('title') In giấy khám bệnh @endsection
 
 @section('content')
     <div class="main-content">
@@ -12,12 +12,12 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="page-title-box d-flex align-items-center justify-content-between">
-                            <h4 class="mb-0 font-size-18">Thông tin giấy khám bệnh</h4>
+                            <h4 class="mb-0 font-size-18">In giấy khám bệnh</h4>
 
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
                                     <li class="breadcrumb-item"><a href="{{ route('health_certifications.index') }}" title="Quản lý giấy khám bệnh" data-toggle="tooltip" data-placement="top">Quản lý giấy khám bệnh</a></li>
-                                    <li class="breadcrumb-item active">Thông tin giấy khám bệnh</li>
+                                    <li class="breadcrumb-item active">In giấy khám bệnh</li>
                                 </ol>
                             </div>
 
@@ -283,12 +283,9 @@
             format: 'dd-mm-yyyy',
         });
 
-        // $(document).ready(function() {
-        //     $(`#print`).click(function() {
-        //         $(`#print`).addClass('d-block');
-        //         window.print();
-        //     });
-        // });
+        $(document).ready(function() {
+            window.print();
+        });
     </script>
 @endpush
 

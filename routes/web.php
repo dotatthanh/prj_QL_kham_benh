@@ -14,6 +14,7 @@ use App\Http\Controllers\HealthCertificationController;
 use App\Http\Controllers\PrescriptionController;
 use App\Http\Controllers\ServiceVoucherController;
 use App\Http\Controllers\ServiceVoucherDetailController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,9 +33,7 @@ Route::get('/', function () {
 
 
 Route::middleware(['auth'])->group(function () {
-	Route::get('/dashboard', function () {
-	    return view('dashboard');
-	})->name('dashboard');
+	Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 	
 	Route::resource('patients', PatientController::class);
 
@@ -53,13 +52,17 @@ Route::middleware(['auth'])->group(function () {
 	Route::post('/health_insurance_cards/{id}/get-insurance-card', [HealthInsuranceCardController::class, 'getInsuranceCard'])->name('health_insurance_cards.get-insurance-card');
 
 	Route::resource('health_certifications', HealthCertificationController::class);
+	Route::get('/health_certifications/print/{health_certification}', [HealthCertificationController::class, 'print'])->name('health_certifications.print');
 	Route::get('/health_certifications/{health_certification}/conclude', [HealthCertificationController::class, 'viewConclude'])->name('health_certifications.conclude');
 	Route::put('/health_certifications/{health_certification}', [HealthCertificationController::class, 'conclude'])->name('health_certifications.update-conclude');
 
 	Route::resource('prescriptions', PrescriptionController::class);
+	Route::get('/prescriptions/print/{prescription}', [PrescriptionController::class, 'print'])->name('prescriptions.print');
 	Route::post('/prescriptions/confirm-payment/{prescription}', [PrescriptionController::class, 'confirmPayment'])->name('prescriptions.confirm-payment');
 
 	Route::resource('service_vouchers', ServiceVoucherController::class);
+	Route::get('/service_vouchers/print/{service_voucher}', [ServiceVoucherController::class, 'print'])->name('service_vouchers.print');
+	Route::post('/service_vouchers/complete-examination/{service_voucher}', [ServiceVoucherController::class, 'completeExamination'])->name('service_vouchers.complete-examination');
 
 	Route::resource('service_voucher_details', ServiceVoucherDetailController::class);
 	Route::get('/service_voucher_details/delete/{service_voucher_detail}', [ServiceVoucherDetailController::class, 'delete'])->name('service_voucher_details.delete');

@@ -16,7 +16,8 @@
 
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item"><a href="{{ route('permissions.index') }}" title="Quản lý quyền" data-toggle="tooltip" data-placement="top">Quản lý quyền</a></li>
+                                    <li class="breadcrumb-item">Cài đặt</li>
+                                    <li class="breadcrumb-item"><a href="{{ route('permissions.index') }}" title="Quản lý quyền" data-toggle="tooltip" data-placement="top">Quyền</a></li>
                                     <li class="breadcrumb-item active">Cập nhật quyền</li>
                                 </ol>
                             </div>

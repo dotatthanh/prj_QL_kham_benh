@@ -260,4 +260,13 @@ class PrescriptionController extends Controller
             return redirect()->back()->with('alert-error','Xác nhận thanh toán thất bại!');
         }
     }
+
+    public function print(Prescription $prescription)
+    {
+        $data = [
+            'prescription' => $prescription,
+        ];
+
+        return view('prescription.print', $data);
+    }
 }

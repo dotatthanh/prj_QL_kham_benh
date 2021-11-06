@@ -43,11 +43,14 @@
                                                 <i class="bx bx-search-alt search-icon font-size-16 align-middle mr-2"></i> Tìm kiếm
                                             </button>
                                         </div>
+
+                                        @can('Thêm thuốc')
                                         <div class="col-sm-7">
                                             <div class="text-sm-right">
                                                 <a href="{{ route('medicines.create') }}" class="text-white btn btn-success btn-rounded waves-effect waves-light mb-2 mr-2"><i class="mdi mdi-plus mr-1"></i> Thêm thuốc</a>
                                             </div>
                                         </div><!-- end col-->
+                                        @endcan
                                     </div>
                                 </form>
 
@@ -80,14 +83,13 @@
                                                     <td>{!! $medicine->description !!}</td>
                                                     <td class="text-center">
                                                         <ul class="list-inline font-size-20 contact-links mb-0">
-                                                            {{-- <li class="list-inline-item px">
-                                                                <a href="{{ route('medicines.show', $medicine->id) }}" data-toggle="tooltip" data-placement="top" title="Xem thông tin"><i class="bx bx-user-circle text-success"></i></a>
-                                                            </li> --}}
-
+                                                            @can('Chỉnh sửa thuốc')
                                                             <li class="list-inline-item px">
                                                                 <a href="{{ route('medicines.edit', $medicine->id) }}" data-toggle="tooltip" data-placement="top" title="Sửa"><i class="mdi mdi-pencil text-success"></i></a>
                                                             </li>
+                                                            @endcan
 
+                                                            @can('Xóa thuốc')
                                                             <li class="list-inline-item px">
                                                                 <form method="post" action="{{ route('medicines.destroy', $medicine->id) }}">
                                                                     @csrf
@@ -96,6 +98,7 @@
                                                                     <button type="submit" data-toggle="tooltip" data-placement="top" title="Xóa" class="border-0 bg-white"><i class="mdi mdi-trash-can text-danger"></i></button>
                                                                 </form>
                                                             </li>
+                                                            @endcan
                                                         </ul>
                                                     </td>
                                                 </tr>

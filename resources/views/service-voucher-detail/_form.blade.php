@@ -126,6 +126,6 @@
 <div class="card">
     <div class="card-body">
         <button type="submit" class="btn btn-primary mr-1 waves-effect waves-light">Lưu lại</button>
-        <a href="{{ route('service_voucher_details.index') }}" class="btn btn-secondary waves-effect">Quay lại</a>
+        <a href="{{ route('service_vouchers.index') }}" class="btn btn-secondary waves-effect">Quay lại</a>
     </div>
 </div>
