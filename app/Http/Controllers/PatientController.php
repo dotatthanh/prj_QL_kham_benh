@@ -6,6 +6,7 @@ use App\Models\Patient;
 use Illuminate\Http\Request;
 use App\Http\Requests\StorePatientRequest;
 use DB;
+use Illuminate\Support\Facades\Storage;
 
 class PatientController extends Controller
 {
@@ -54,8 +55,8 @@ class PatientController extends Controller
             $file_path = '';
             if ($request->file('avatar')) {
                 $name = time().'_'.$request->avatar->getClientOriginalName();
-                $filePath = $request->file('avatar')->storeAs('/avatar/patient', $name, 'public');
-                $file_path = 'storage/avatar/patient/'.$name;
+                $file_path = 'uploads/avatar/patient/'.$name;
+                Storage::disk('public_uploads')->putFileAs('avatar/patient', $request->avatar, $name);
             }
             
             $create = Patient::create([
@@ -120,8 +121,8 @@ class PatientController extends Controller
 
             if ($request->file('avatar')) {
                 $name = time().'_'.$request->avatar->getClientOriginalName();
-                $filePath = $request->file('avatar')->storeAs('/avatar/patient', $name, 'public');
-                $file_path = 'storage/avatar/patient/'.$name;
+                $file_path = 'uploads/avatar/patient/'.$name;
+                Storage::disk('public_uploads')->putFileAs('avatar/patient', $request->avatar, $name);
                 
                 $patient->update([
                     'name' => $request->name,

@@ -11,6 +11,7 @@ use App\Http\Requests\UpdateUserRequest;
 use App\Http\Requests\ChangePasswordRequest;
 use DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -65,8 +66,8 @@ class UserController extends Controller
             $file_path = '';
             if ($request->file('avatar')) {
                 $name = time().'_'.$request->avatar->getClientOriginalName();
-                $filePath = $request->file('avatar')->storeAs('/avatar/user', $name, 'public');
-                $file_path = 'storage/avatar/user/'.$name;
+                $file_path = 'uploads/avatar/user/'.$name;
+                Storage::disk('public_uploads')->putFileAs('avatar/user', $request->avatar, $name);
             }
             
             $create = User::create([
@@ -148,8 +149,8 @@ class UserController extends Controller
 
             if ($request->file('avatar')) {
                 $name = time().'_'.$request->avatar->getClientOriginalName();
-                $filePath = $request->file('avatar')->storeAs('/avatar/user', $name, 'public');
-                $file_path = 'storage/avatar/user/'.$name;
+                $file_path = 'uploads/avatar/user/'.$name;
+                Storage::disk('public_uploads')->putFileAs('avatar/user', $request->avatar, $name);
                 
                 $user->update([
                     'name' => $request->name,
