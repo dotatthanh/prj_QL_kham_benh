@@ -64,6 +64,12 @@
                                                     <td class="text-center">
                                                         @if ($role->id != 1)
                                                         <ul class="list-inline font-size-20 contact-links mb-0">
+                                                            @can('Xem quyền')
+                                                            <li class="list-inline-item px">
+                                                                <a href="{{ route('permissions.show', $role->id) }}" data-toggle="tooltip" data-placement="top" title="Xem"><i class="fa fa-eye text-success"></i></a>
+                                                            </li>
+                                                            @endcan
+                                                            
                                                             @can('Chỉnh sửa quyền')
                                                             <li class="list-inline-item px">
                                                                 <a href="{{ route('permissions.edit', $role->id) }}" data-toggle="tooltip" data-placement="top" title="Sửa"><i class="mdi mdi-pencil text-success"></i></a>

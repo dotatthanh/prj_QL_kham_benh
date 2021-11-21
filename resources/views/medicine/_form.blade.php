@@ -8,7 +8,7 @@
             <div class="col-sm-6">
                 <div class="form-group">
                     <label for="name">Tên thuốc <span class="text-danger">*</span></label>
-                    <input id="name" name="name" type="text" class="form-control" placeholder="Họ và tên" value="{{ old('name', $data_edit->name ?? '') }}">
+                    <input id="name" name="name" type="text" class="form-control" placeholder="Tên thuốc" value="{{ old('name', $data_edit->name ?? '') }}">
                     {!! $errors->first('name', '<span class="error">:message</span>') !!}
                 </div>
                     

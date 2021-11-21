@@ -73,11 +73,11 @@
                     {!! $errors->first('user_id', '<span class="error">:message</span>') !!}
                 </div>
 
-                <div class="form-group">
+                {{-- <div class="form-group">
                     <label for="total_money">Giá <span class="text-danger">*</span></label>
                     <input id="total_money" name="total_money" type="number" class="form-control" placeholder="Giá" value="{{ old('total_money', $data_edit->total_money ?? '') }}">
                     {!! $errors->first('total_money', '<span class="error">:message</span>') !!}
-                </div>
+                </div> --}}
                 
                 <div class="form-group">
                     <label for="end_date">Ngày kết thúc <span class="text-danger">*</span></label>

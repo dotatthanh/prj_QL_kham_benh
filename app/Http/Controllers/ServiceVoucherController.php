@@ -68,7 +68,9 @@ class ServiceVoucherController extends Controller
 
         try {
             DB::beginTransaction();
-            
+
+            $medical_service = MedicalService::findOrFail($request->medical_service_id);
+
             $create = ServiceVoucher::create([
                 'code' => '',
                 'patient_id' => $request->patient_id,
@@ -76,7 +78,7 @@ class ServiceVoucherController extends Controller
                 'user_id' => $request->user_id,
                 'start_date' => date("Y-m-d", strtotime($request->start_date)),
                 'end_date' => date("Y-m-d", strtotime($request->end_date)),
-                'total_money' => $request->total_money,
+                'total_money' => $medical_service->price,
                 'status' => 0,
                 'is_health_insurance_card' => $is_health_insurance_card,
             ]);
@@ -150,14 +152,16 @@ class ServiceVoucherController extends Controller
 
         try {
             DB::beginTransaction();
-            
+
+            $medical_service = MedicalService::findOrFail($request->medical_service_id);
+
             $serviceVoucher->update([
                 'patient_id' => $request->patient_id,
                 'medical_service_id' => $request->medical_service_id,
                 'user_id' => $request->user_id,
                 'start_date' => date("Y-m-d", strtotime($request->start_date)),
                 'end_date' => date("Y-m-d", strtotime($request->end_date)),
-                'total_money' => $request->total_money,
+                'total_money' => $medical_service->price,
                 'is_health_insurance_card' => $is_health_insurance_card,
             ]);
 

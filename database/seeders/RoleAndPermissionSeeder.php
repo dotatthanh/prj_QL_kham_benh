@@ -155,9 +155,11 @@ class RoleAndPermissionSeeder extends Seeder
         $admin->givePermissionTo($delete_role);
 
         $view_permission = Permission::create(['name' => 'Xem danh sách quyền']);
+        $view_permission_detail = Permission::create(['name' => 'Xem quyền']);
         $edit_permission = Permission::create(['name' => 'Chỉnh sửa quyền']);
 
         $admin->givePermissionTo($view_permission);
+        $admin->givePermissionTo($view_permission_detail);
         $admin->givePermissionTo($edit_permission);
     }
 }

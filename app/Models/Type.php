@@ -14,8 +14,8 @@ class Type extends Model
     	'name',
     ];
 
-    public function drinks()
+    public function medicines()
     {
-        return $this->hasMany(Drink::class);
+        return $this->hasMany(Medicine::class);
     }
 }

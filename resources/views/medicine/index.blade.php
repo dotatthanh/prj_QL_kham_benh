@@ -61,7 +61,7 @@
                                                 <th style="width: 70px;" class="text-center">STT</th>
                                                 <th>Mã</th>
                                                 <th>Tên thuốc</th>
-                                                <th>Danh dục</th>
+                                                <th>Loại thuốc</th>
                                                 <th>Giá (VNĐ)</th>
                                                 <th>Đơn vị tính</th>
                                                 <th>Mô tả</th>
@@ -80,7 +80,28 @@
                                                     <td>{{ $medicine->type->name }}</td>
                                                     <td>{{ number_format($medicine->price, 0, ',', '.') }}</td>
                                                     <td>{{ $medicine->unit }}</td>
-                                                    <td>{!! $medicine->description !!}</td>
+                                                    <td>
+                                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#description{{ $medicine->id }}">Xem</button>
+
+                                                        <div class="modal fade" id="description{{ $medicine->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                            <div class="modal-dialog modal-lg">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title" id="exampleModalLabel">Mô tả</h5>
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        {!! $medicine->description !!}
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
                                                     <td class="text-center">
                                                         <ul class="list-inline font-size-20 contact-links mb-0">
                                                             @can('Chỉnh sửa thuốc')
