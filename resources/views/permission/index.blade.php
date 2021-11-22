@@ -35,7 +35,7 @@
                                         <div class="col-sm-5">
                                             <div class="search-box mr-2 mb-2 d-inline-block">
                                                 <div class="position-relative">
-                                                    <input type="text" name="search" class="form-control" placeholder="Nhập họ và tên">
+                                                    <input type="text" name="search" class="form-control" placeholder="Nhập vai trò">
                                                     <i class="bx bx-search-alt search-icon"></i>
                                                 </div>
                                             </div>
