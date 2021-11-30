@@ -14,16 +14,15 @@ class HealthCertification extends Model
     	'patient_id',
     	'consulting_room_id',
     	'user_id',
-    	// 'date',
     	'code',
     	'status',
+        'payment_status',
     	'conclude',
     	'treatment_guide',
     	'suggestion',
     	'number',
     	'total_money',
         'is_health_insurance_card',
-    	// 'type',
     ];
 
     public function patient()

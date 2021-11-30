@@ -161,5 +161,15 @@ class RoleAndPermissionSeeder extends Seeder
         $admin->givePermissionTo($view_permission);
         $admin->givePermissionTo($view_permission_detail);
         $admin->givePermissionTo($edit_permission);
+
+        $view_cashier_health_certificate = Permission::create(['name' => 'Xem thu ngân giấy khám bệnh']);
+        $view_cashier_service_voucher = Permission::create(['name' => 'Xem thu ngân phiếu dịch vụ']);
+        $confirm_payment_health_certificate = Permission::create(['name' => 'Xác nhận thanh toán giấy khám bệnh']);
+        $confirm_payment_service_voucher = Permission::create(['name' => 'Xác nhận thanh toán phiếu dịch vụ']);
+
+        $admin->givePermissionTo($view_cashier_health_certificate);
+        $admin->givePermissionTo($view_cashier_service_voucher);
+        $admin->givePermissionTo($confirm_payment_health_certificate);
+        $admin->givePermissionTo($confirm_payment_service_voucher);
     }
 }

@@ -15,6 +15,8 @@ use App\Http\Controllers\PrescriptionController;
 use App\Http\Controllers\ServiceVoucherController;
 use App\Http\Controllers\ServiceVoucherDetailController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\CashierHealthCertificationController;
+use App\Http\Controllers\CashierServiceVoucherController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +38,10 @@ Route::middleware(['auth'])->group(function () {
 	Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 	
 	Route::resource('patients', PatientController::class);
+	Route::resource('cashier_health_certifications', CashierHealthCertificationController::class);
+	Route::post('/cashier_health_certifications/confirm-payment/{id}', [CashierHealthCertificationController::class, 'confirmPayment'])->name('cashier_health_certifications.confirm-payment');
+	Route::resource('cashier_service_vouchers', CashierServiceVoucherController::class);
+	Route::post('/cashier_service_vouchers/confirm-payment/{id}', [CashierServiceVoucherController::class, 'confirmPayment'])->name('cashier_service_vouchers.confirm-payment');
 
 	Route::resource('users', UserController::class);
 	Route::get('/users/view-change-password/{user}', [UserController::class, 'viewChangePassword'])->name('users.view-change-password');

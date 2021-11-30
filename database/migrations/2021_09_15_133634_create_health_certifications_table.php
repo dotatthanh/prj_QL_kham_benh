@@ -22,16 +22,13 @@ class CreateHealthCertificationsTable extends Migration
             $table->integer('user_id');
             $table->string('code');
             $table->integer('status');
+            $table->integer('payment_status')->default(0);
             $table->string('conclude')->nullable();
             $table->string('treatment_guide')->nullable();
             $table->string('suggestion')->nullable();
             $table->integer('number');
             $table->integer('total_money');
             $table->integer('is_health_insurance_card');
-            
-            // bỏ
-            // $table->date('date');
-            // $table->integer('type');
             $table->timestamps();
         });
     }

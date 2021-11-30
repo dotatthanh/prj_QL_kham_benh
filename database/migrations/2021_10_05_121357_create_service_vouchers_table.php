@@ -24,6 +24,7 @@ class CreateServiceVouchersTable extends Migration
             $table->date('end_date');
             $table->integer('total_money');
             $table->integer('status');
+            $table->integer('payment_status')->default(0);
             $table->timestamps();
         });
     }

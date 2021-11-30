@@ -96,6 +96,23 @@
                 </li>
                 @endcan
 
+                @can('Xem thu ngân giấy khám bệnh', 'Xem thu ngân phiếu dịch vụ')
+                <li>
+                    <a href="javascript: void(0);" class="waves-effect">
+                        <i class="bx bxs-bar-chart-alt-2"></i><span class="badge badge-pill badge-info float-right">02</span>
+                        <span>Thu ngân</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        @can('Xem thu ngân giấy khám bệnh')
+                        <li><a href="{{ route('cashier_health_certifications.index') }}">Giấy khám bệnh</a></li>
+                        @endcan
+                        @can('Xem thu ngân phiếu dịch vụ')
+                        <li><a href="{{ route('cashier_service_vouchers.index') }}">Phiếu dịch vụ</a></li>
+                        @endcan
+                    </ul>
+                </li>
+                @endcan
+
                 @can('Xem danh sách tài khoản', 'Xem danh sách vai trò', 'Xem danh sách quyền')
                 <li>
                     <a href="javascript: void(0);" class="waves-effect">

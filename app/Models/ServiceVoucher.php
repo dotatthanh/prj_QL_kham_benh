@@ -19,6 +19,7 @@ class ServiceVoucher extends Model
     	'end_date',
     	'total_money',
     	'status',
+        'payment_status'
     ];
 
     public function patient()
