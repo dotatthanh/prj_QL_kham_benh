@@ -72,12 +72,6 @@
                     </select>
                     {!! $errors->first('user_id', '<span class="error">:message</span>') !!}
                 </div>
-
-                {{-- <div class="form-group">
-                    <label for="total_money">Giá <span class="text-danger">*</span></label>
-                    <input id="total_money" name="total_money" type="number" class="form-control" placeholder="Giá" value="{{ old('total_money', $data_edit->total_money ?? '') }}">
-                    {!! $errors->first('total_money', '<span class="error">:message</span>') !!}
-                </div> --}}
                 
                 <div class="form-group">
                     <label for="end_date">Ngày kết thúc <span class="text-danger">*</span></label>
@@ -101,44 +95,6 @@
 </div>
 
 @if (isset($data_edit) && $data_edit->serviceVoucherDetails->count())
-    {{-- <div class="card">
-        <div class="card-body">
-            <h4 class="card-title mb-4">Chi tiết khám</h4>
-
-            <div data-repeater-list="service_voucher_details">
-                @foreach ($data_edit->serviceVoucherDetails as $service_voucher_detail)
-                    <div data-repeater-item class="row">
-                        <div class="form-group col-lg-3">
-                            <label>Ngày khám</label>
-                            <div class="docs-datepicker">
-                                <div class="input-group">
-                                    <input required type="text" class="form-control docs-date" name="date" placeholder="Chọn ngày" autocomplete="off" value="{{ date('d-m-Y', strtotime($service_voucher_detail->date)) }}">
-                                    <div class="input-group-append">
-                                        <button type="button" class="btn btn-outline-secondary docs-datepicker-trigger" disabled="">
-                                            <i class="fa fa-calendar" aria-hidden="true"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="docs-datepicker-container"></div>
-                            </div>
-                        </div>
-
-                        <div class="form-group col-lg-8">
-                            <label for="result">Kết quả</label>
-                            <textarea id="result" class="summernote mb-2" name="result" required="">{!! $service_voucher_detail->result !!}</textarea>
-                        </div>
-
-                        <div class="col-lg-1">
-                            <label>Thao tác</label>
-                            <input data-repeater-delete="" type="button" class="btn btn-danger btn-block" value="Xóa">
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-            <input data-repeater-create="" type="button" class="btn btn-success mt-3 mt-lg-0" value="Thêm">
-        </div>
-    </div> --}}
-
     <div class="card">
         <div class="card-body">
             <h4 class="card-title mb-3">Kết quả</h4>
@@ -175,12 +131,6 @@
                                                     </li>
                                                     
                                                     <li class="list-inline-item px">
-                                                        {{-- <form method="post" action="{{ route('service_vouchers.destroy', $service_voucher_detail->id) }}">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            
-                                                            <button type="submit" data-toggle="tooltip" data-placement="top" title="Xóa" class="border-0 bg-white"><i class="mdi mdi-trash-can text-danger"></i></button>
-                                                        </form> --}}
                                                         <a href="{{ route('service_voucher_details.delete', $service_voucher_detail->id) }}" data-toggle="tooltip" data-placement="top" title="Xóa"><i class="mdi mdi-trash-can text-danger"></i></a>
                                                     </li>
 

@@ -33,7 +33,7 @@
                             <div class="card-body">
 
                                 <h4 class="card-title">Danh sách quyền</h4>
-                                <p class="card-title-desc">Chọn quyền cho vai trò</p>
+                                <p class="card-title-desc">Chọn quyền cho vai trò <span class="font-weight-bold">{{ $role->name }}</span></p>
 
                                 <form method="POST" action="{{ route('permissions.update', $role->id) }}" enctype="multipart/form-data">
                                     @method('PUT')

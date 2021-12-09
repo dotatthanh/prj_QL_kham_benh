@@ -30,119 +30,124 @@
                     <div class="col-12">
 
                         {{-- @if ($prescription->status == 1)     --}}
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="card-title mb-3">Thông tin cơ bản</h4>
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title mb-3">Thông tin cơ bản</h4>
 
-                                    <div class="row">
-                                        <div class="col-sm-2">
-                                            <label>Mã đơn thuốc :</label>
-                                        </div>
+                                <div class="row">
+                                    <div class="col-sm-2">
+                                        <label>Mã đơn thuốc :</label>
+                                    </div>
 
-                                        <div class="col-sm-10">
-                                            <label>{{ $prescription->code }}</label>
-                                        </div>
+                                    <div class="col-sm-10">
+                                        <label>{{ $prescription->code }}</label>
+                                    </div>
 
-                                        <div class="col-sm-2">
-                                            <label>Tên bệnh nhân :</label>
-                                        </div>
+                                    <div class="col-sm-2">
+                                        <label>Tên bệnh nhân :</label>
+                                    </div>
 
-                                        <div class="col-sm-4">
-                                            <label>{{ $prescription->patient->name }}</label>
-                                        </div>
+                                    <div class="col-sm-4">
+                                        <label>{{ $prescription->patient->name }}</label>
+                                    </div>
 
-                                        <div class="col-sm-2">
-                                            <label>Bác sĩ :</label>
-                                        </div>
+                                    <div class="col-sm-2">
+                                        <label>Bác sĩ :</label>
+                                    </div>
 
-                                        <div class="col-sm-4">
-                                            <label>{{ $prescription->user->name }}</label>
-                                        </div>
+                                    <div class="col-sm-4">
+                                        <label>{{ $prescription->user->name }}</label>
+                                    </div>
 
-                                        <div class="col-sm-2">
-                                            <label>Thẻ BHYT :</label>
-                                        </div>
+                                    <div class="col-sm-2">
+                                        <label>Thẻ BHYT :</label>
+                                    </div>
 
-                                        <div class="col-sm-4">
-                                            <div class="custom-control custom-checkbox  custom-checkbox-danger">
-                                                @if ($prescription->is_health_insurance_card)
-                                                <input type="checkbox" class="custom-control-input" id="check_insurance_card" disabled checked>
-                                                <label class="custom-control-label" for="check_insurance_card">Miễn phí đơn thuốc</label>
-                                                @else
-                                                <input type="checkbox" class="custom-control-input" id="check_insurance_card" disabled>
-                                                <label class="custom-control-label" for="check_insurance_card">Miễn phí đơn thuốc</label>
-                                                @endif
-                                            </div>
-                                        </div>
-
-                                        <div class="col-sm-2">
-                                            <label>Tổng tiền :</label>
-                                        </div>
-
-                                        <div class="col-sm-4">
-                                            <label class="text-danger font-weight-bold">{{ number_format($prescription->total_money, 0, ',', '.') }} VNĐ</label>
-                                        </div>
-
-                                        <div class="col-sm-2">
-                                            <label>Trạng thái :</label>
-                                        </div>
-
-                                        <div class="col-sm-10">
-                                            @if ($prescription->status)
-                                                <label class="text-success">Đã mua</label>
+                                    <div class="col-sm-4">
+                                        <div class="custom-control custom-checkbox  custom-checkbox-danger">
+                                            @if ($prescription->is_health_insurance_card)
+                                            <input type="checkbox" class="custom-control-input" id="check_insurance_card" disabled checked>
+                                            <label class="custom-control-label" for="check_insurance_card">Miễn phí đơn thuốc</label>
                                             @else
-                                                <label class="text-warning">Chưa mua</label>
+                                            <input type="checkbox" class="custom-control-input" id="check_insurance_card" disabled>
+                                            <label class="custom-control-label" for="check_insurance_card">Miễn phí đơn thuốc</label>
                                             @endif
                                         </div>
+                                    </div>
 
-                                        <div class="col-sm-12">
-                                            <label>Chi tiết đơn thuốc :</label>
-                                        </div>
+                                    <div class="col-sm-2">
+                                        <label>Tổng tiền :</label>
+                                    </div>
 
-                                        <div class="col-sm-12">
-                                            <div class="table-responsive">
-                                                <table class="table table-centered table-nowrap">
-                                                    <thead class="thead-light">
+                                    <div class="col-sm-4">
+                                        <label class="text-danger font-weight-bold">{{ number_format($prescription->total_money, 0, ',', '.') }} VNĐ</label>
+                                    </div>
+
+                                    <div class="col-sm-2">
+                                        <label>Trạng thái :</label>
+                                    </div>
+
+                                    <div class="col-sm-10">
+                                        @if ($prescription->status)
+                                            <label class="text-success">Đã mua</label>
+                                        @else
+                                            <label class="text-warning">Chưa mua</label>
+                                        @endif
+                                    </div>
+
+                                    <div class="col-sm-12">
+                                        <label>Chi tiết đơn thuốc :</label>
+                                    </div>
+
+                                    <div class="col-sm-12">
+                                        <div class="table-responsive">
+                                            <table class="table table-centered table-nowrap">
+                                                <thead class="thead-light">
+                                                    <tr>
+                                                        <th class="text-center">STT</th>
+                                                        <th>Tên thuốc</th>
+                                                        <th>Đơn vị tính</th>
+                                                        <th>Số lượng</th>
+                                                        <th>Cách dùng</th>
+                                                        <th>Giá (VNĐ)</th>
+                                                        <th>Tổng tiền (VNĐ)</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @php ($stt = 1)
+                                                    @foreach ($prescription->prescriptionDetails as $prescription_detail)
                                                         <tr>
-                                                            <th class="text-center">STT</th>
-                                                            <th>Tên thuốc</th>
-                                                            <th>Đơn vị tính</th>
-                                                            <th>Số lượng</th>
-                                                            <th>Cách dùng</th>
-                                                            <th>Giá (VNĐ)</th>
-                                                            <th>Tổng tiền (VNĐ)</th>
+                                                            <td class="text-center">{{ $stt++ }}</td>
+                                                            <td>{{ $prescription_detail->medicine->name }}</td>
+                                                            <td>
+                                                                {{ $prescription_detail->medicine->unit }}
+                                                            </td>
+                                                            <td>
+                                                                {{ $prescription_detail->amount }}
+                                                            </td>
+                                                            <td>{{ $prescription_detail->use }}</td>
+                                                            <td>{{ number_format($prescription_detail->price, 0, ',', '.') }}</td>
+                                                            <td>{{ number_format($prescription_detail->total_money, 0, ',', '.') }}</td>
                                                         </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        @php ($stt = 1)
-                                                        @foreach ($prescription->prescriptionDetails as $prescription_detail)
-                                                            <tr>
-                                                                <td class="text-center">{{ $stt++ }}</td>
-                                                                <td>{{ $prescription_detail->medicine->name }}</td>
-                                                                <td>
-                                                                    {{ $prescription_detail->medicine->unit }}
-                                                                </td>
-                                                                <td>
-                                                                    {{ $prescription_detail->amount }}
-                                                                </td>
-                                                                <td>{{ $prescription_detail->use }}</td>
-                                                                <td>{{ number_format($prescription_detail->price, 0, ',', '.') }}</td>
-                                                                <td>{{ number_format($prescription_detail->total_money, 0, ',', '.') }}</td>
-                                                            </tr>
-                                                        @endforeach
-                                                            <tr>
-                                                                <td class="font-weight-bold text-right" colspan="6">Thành tiền (VNĐ)</th>
-                                                                <td class="font-weight-bold text-danger">{{ number_format($prescription->total_money, 0, ',', '.') }}</td>
-                                                            </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
+                                                    @endforeach
+                                                        <tr>
+                                                            <td class="font-weight-bold text-right" colspan="6">Thành tiền (VNĐ)</th>
+                                                            <td class="font-weight-bold text-danger">{{ number_format($prescription->total_money, 0, ',', '.') }}</td>
+                                                        </tr>
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
+
+                        </div>
                         {{-- @endif --}}
+                        <div class="card">
+                            <div class="card-body">
+                                <a href="{{ route('prescriptions.index') }}" class="btn btn-secondary waves-effect">Quay lại</a>
+                            </div>
+                        </div>
 
                     </div>
                 </div>

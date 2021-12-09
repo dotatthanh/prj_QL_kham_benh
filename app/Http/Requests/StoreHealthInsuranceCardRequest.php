@@ -26,7 +26,7 @@ class StoreHealthInsuranceCardRequest extends FormRequest
         return [
             'patient_id' => 'required', 
             'hospital' => 'required|max:255',
-            'use_value' => 'required|date',
+            'use_value' => 'required|date|after_or_equal:date_of_issue',
             'id_card' => 'required',
             'date_of_issue' => 'required|date',
             'issued_by' => 'required|max:50',
@@ -41,6 +41,7 @@ class StoreHealthInsuranceCardRequest extends FormRequest
             'hospital.max' => 'Nơi đăng ký khám không được dài quá :max ký tự.',
             'use_value.required' => 'Giá trị sử dụng là trường bắt buộc.',
             'use_value.date' => 'Giá trị sử dụng không đúng định dạng.',
+            'use_value.after_or_equal' => 'Giá trị sử dụng phải lớn hơn hoặc bằng ngày cấp.',
             'id_card.required' => 'Mã thẻ là trường bắt buộc.',
             'date_of_issue.required' => 'Ngày cấp là trường bắt buộc.',
             'date_of_issue.date' => 'Ngày cấp không đúng định dạng.',

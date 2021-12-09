@@ -86,9 +86,10 @@
     <!-- form advanced init -->
     <script src="{{ asset('js\pages\form-advanced.init.js') }}"></script>
     <script type="text/javascript">
+        let year = new Date().getFullYear()-18+"-12-09";
         $('.docs-date').datepicker({
             format: 'dd-mm-yyyy',
-            endDate: new Date(),
+            endDate: new Date(year),
         });
     </script>
 @endpush

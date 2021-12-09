@@ -116,7 +116,9 @@
 
         <div class="form-group">
             <label for="result">Kết quả <span class="text-danger">*</span></label>
-            <textarea id="result" class="summernote mb-2" name="result">{!! isset($data_edit->date) ? $data_edit->result : '' !!}</textarea>
+            <textarea id="result" class="summernote mb-2" name="result">
+                {{ old('result', isset($data_edit->result) ? ($data_edit->result) : '') }}
+            </textarea>
             {!! $errors->first('result', '<span class="error mt-1 d-block">:message</span>') !!}
         </div>
     </div>

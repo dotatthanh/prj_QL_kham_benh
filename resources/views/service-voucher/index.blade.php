@@ -132,22 +132,24 @@
                                                                     @endcan
                                                                 @endif
 
-                                                                @can('Chỉnh sửa phiếu dịch vụ')
-                                                                <li class="list-inline-item px">
-                                                                    <a href="{{ route('service_vouchers.edit', $service_voucher->id) }}" data-toggle="tooltip" data-placement="top" title="Sửa"><i class="mdi mdi-pencil text-success"></i></a>
-                                                                </li>
-                                                                @endcan
+                                                                @if ($service_voucher->payment_status == 0)
+                                                                    @can('Chỉnh sửa phiếu dịch vụ')
+                                                                    <li class="list-inline-item px">
+                                                                        <a href="{{ route('service_vouchers.edit', $service_voucher->id) }}" data-toggle="tooltip" data-placement="top" title="Sửa"><i class="mdi mdi-pencil text-success"></i></a>
+                                                                    </li>
+                                                                    @endcan
 
-                                                                @can('Xóa phiếu dịch vụ')
-                                                                <li class="list-inline-item px">
-                                                                    <form method="post" action="{{ route('service_vouchers.destroy', $service_voucher->id) }}">
-                                                                        @csrf
-                                                                        @method('DELETE')
-                                                                        
-                                                                        <button type="submit" data-toggle="tooltip" data-placement="top" title="Xóa" class="border-0 bg-white"><i class="mdi mdi-trash-can text-danger"></i></button>
-                                                                    </form>
-                                                                </li>
-                                                                @endcan
+                                                                    @can('Xóa phiếu dịch vụ')
+                                                                    <li class="list-inline-item px">
+                                                                        <form method="post" action="{{ route('service_vouchers.destroy', $service_voucher->id) }}">
+                                                                            @csrf
+                                                                            @method('DELETE')
+                                                                            
+                                                                            <button type="submit" data-toggle="tooltip" data-placement="top" title="Xóa" class="border-0 bg-white"><i class="mdi mdi-trash-can text-danger"></i></button>
+                                                                        </form>
+                                                                    </li>
+                                                                    @endcan
+                                                                @endif
                                                             @else
                                                                 @can('In phiếu dịch vụ')
                                                                 <li class="list-inline-item px">
