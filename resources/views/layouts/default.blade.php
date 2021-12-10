@@ -51,10 +51,10 @@
 
                             <a href="{{ route('dashboard') }}" class="logo logo-light">
                                 <span class="logo-sm">
-                                    <img src="{{ asset('images\logo.jpg') }}" alt="" height="50">
+                                    <img src="{{ asset('images\logo.jpg') }}" alt="" height="22">
                                 </span>
                                 <span class="logo-lg">
-                                    <img src="{{ asset('images\logo.jpg') }}" alt="" height="19">
+                                    <img src="{{ asset('images\logo.jpg') }}" alt="" height="50">
                                 </span>
                             </a>
                         </div>
@@ -120,15 +120,6 @@
         <script src="{{ asset('libs\toastr\build\toastr.min.js') }}"></script>
 
         <script type="text/javascript">
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            
-            // add class paginate theme
-            $('ul.pagination').addClass('pagination-rounded justify-content-center mt-4');
-            
             // toastr noti
             @if(Session::has('alert-success'))
                 Command: toastr["success"]("{{ Session::get('alert-success') }}")

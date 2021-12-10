@@ -80,6 +80,7 @@
                                         <div class="form-group">
                                             <label for="useremail">Email</label>
                                             <input type="email" class="form-control" id="useremail" placeholder="Nhập email" value="{{ old('email') }}" name="email" required autofocus>
+                                            {!! $errors->first('email', '<span class="error">:message</span>') !!}
                                         </div>
                     
                                         <div class="form-group row mb-0">

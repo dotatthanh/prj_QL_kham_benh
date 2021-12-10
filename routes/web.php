@@ -29,10 +29,13 @@ use App\Http\Controllers\CashierServiceVoucherController;
 |
 */
 
-Route::get('/', function () {
-    return redirect('login');
-});
-
+// Route::get('/', function () {
+//     return redirect('login');
+// });
+use App\Http\Controllers\Auth\PasswordResetLinkController;
+Route::get('/', [PasswordResetLinkController::class, 'create'])
+                ->middleware('guest')
+                ->name('password.request');
 
 Route::middleware(['auth'])->group(function () {
 	Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
