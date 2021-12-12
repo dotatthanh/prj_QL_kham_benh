@@ -60,7 +60,12 @@ class HealthInsuranceCardController extends Controller
     {
         try {
             DB::beginTransaction();
-            
+            $patient = Patient::findOrFail($request->patient_id);
+
+            if ($patient->healthInsuranceCard) {
+                return redirect()->back()->with('alert-error','Thêm thẻ BHYT thất bại! Bệnh nhân '.$patient->name.' đã có thẻ BHYT.');
+            }
+
             $create = HealthInsuranceCard::create([
                 'code' => '',
                 'patient_id' => $request->patient_id,
