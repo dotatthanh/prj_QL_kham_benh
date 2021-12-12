@@ -29,13 +29,9 @@ use App\Http\Controllers\CashierServiceVoucherController;
 |
 */
 
-// Route::get('/', function () {
-//     return redirect('login');
-// });
-use App\Http\Controllers\Auth\PasswordResetLinkController;
-Route::get('/', [PasswordResetLinkController::class, 'create'])
-                ->middleware('guest')
-                ->name('password.request');
+Route::get('/', function () {
+    return redirect('login');
+});
 
 Route::middleware(['auth'])->group(function () {
 	Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
@@ -63,7 +59,7 @@ Route::middleware(['auth'])->group(function () {
 	Route::resource('health_certifications', HealthCertificationController::class);
 	Route::get('/health_certifications/print/{health_certification}', [HealthCertificationController::class, 'print'])->name('health_certifications.print');
 	Route::get('/health_certifications/{health_certification}/conclude', [HealthCertificationController::class, 'viewConclude'])->name('health_certifications.conclude');
-	Route::put('/health_certifications/{health_certification}', [HealthCertificationController::class, 'conclude'])->name('health_certifications.update-conclude');
+	Route::put('/health_certifications/{health_certification}/conclude', [HealthCertificationController::class, 'conclude'])->name('health_certifications.update-conclude');
 
 	Route::resource('prescriptions', PrescriptionController::class);
 	Route::get('/prescriptions/print/{prescription}', [PrescriptionController::class, 'print'])->name('prescriptions.print');

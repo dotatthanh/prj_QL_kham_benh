@@ -1,6 +1,5 @@
 <div class="card">
     <div class="card-body">
-
         <h4 class="card-title">Thông tin cơ bản</h4>
         <p class="card-title-desc">Điền tất cả thông tin bên dưới</p>
         @csrf
