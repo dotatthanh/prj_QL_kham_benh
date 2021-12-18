@@ -10,7 +10,7 @@
                                     <div class="col-7">
                                         <div class="text-primary p-4">
                                             <h5 class="text-primary">Chào mừng trở lại !</h5>
-                                            <p>Đăng nhập để tiếp tục Stoke.</p>
+                                            <p>Đăng nhập để tiếp tục Skote.</p>
                                         </div>
                                     </div>
                                     <div class="col-5 align-self-end">
@@ -23,7 +23,7 @@
                                     <a href="index.html">
                                         <div class="avatar-md profile-user-wid mb-4">
                                             <span class="avatar-title rounded-circle bg-light">
-                                                <img src="{{ asset('/images/logo.jpg') }}" alt="" class="rounded-circle" height="34">
+                                                <img src="{{ asset('/images/logo.jpg') }}" alt="" class="rounded-circle" height="67">
                                             </span>
                                         </div>
                                     </a>

@@ -110,6 +110,12 @@
                                                             </li>
                                                             @endcan
 
+                                                            @can('In giấy khám bệnh')
+                                                            <li class="list-inline-item px">
+                                                                <a href="{{ route('health_certifications.print', $health_certification->id) }}" data-toggle="tooltip" data-placement="top" title="In giấy khám bệnh"><i class="bx bx-printer text-success"></i></a>
+                                                            </li>
+                                                            @endcan
+
                                                             @if ($health_certification->status == 0)
                                                                 @if ($health_certification->payment_status == 1)
                                                                     @can('Kết luận khám giấy khám bệnh')
@@ -144,13 +150,7 @@
                                                                     @endcan
                                                                 @endif
 
-                                                                @can('In giấy khám bệnh')
-                                                                <li class="list-inline-item px">
-                                                                    <a href="{{ route('health_certifications.print', $health_certification->id) }}" data-toggle="tooltip" data-placement="top" title="In giấy khám bệnh"><i class="bx bx-printer text-success"></i></a>
-                                                                </li>
-                                                                @endcan
                                                             @endif
-
                                                         </ul>
                                                     </td>
                                                 </tr>

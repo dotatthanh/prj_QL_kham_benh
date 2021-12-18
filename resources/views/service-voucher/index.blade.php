@@ -93,7 +93,7 @@
                                                                 <i class="bx bx-check-double font-size-16 align-middle mr-2"></i> Đã khám
                                                             </label>
                                                         @else
-                                                            <label class="btn btn-warning waves-effect waves-light font-size-12">Chưa khám</label>
+                                                            <label class="btn btn-warning waves-effect waves-light font-size-12">Chưa khám xong</label>
                                                         @endif
                                                     </td>
                                                     <td>
