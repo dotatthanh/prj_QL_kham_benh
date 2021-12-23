@@ -113,6 +113,12 @@
                                                             </li>
                                                             @endcan
 
+                                                            @can('In phiếu dịch vụ')
+                                                            <li class="list-inline-item px">
+                                                                <a href="{{ route('service_vouchers.print', $service_voucher->id) }}" data-toggle="tooltip" data-placement="top" title="In phiếu dịch vụ"><i class="bx bx-printer text-success"></i></a>
+                                                            </li>
+                                                            @endcan
+
                                                             @if ($service_voucher->status == 0)
                                                                 @if ($service_voucher->payment_status == 1)
                                                                     @can('Hoàn thành khám phiếu dịch vụ')
@@ -150,12 +156,6 @@
                                                                     </li>
                                                                     @endcan
                                                                 @endif
-                                                            @else
-                                                                @can('In phiếu dịch vụ')
-                                                                <li class="list-inline-item px">
-                                                                    <a href="{{ route('service_vouchers.print', $service_voucher->id) }}" data-toggle="tooltip" data-placement="top" title="In phiếu dịch vụ"><i class="bx bx-printer text-success"></i></a>
-                                                                </li>
-                                                                @endcan
                                                             @endif
 
                                                         </ul>
