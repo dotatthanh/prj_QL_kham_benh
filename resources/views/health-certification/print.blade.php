@@ -236,6 +236,12 @@
                             @endif
                         @endif
 
+                        <div class="card">
+                            <div class="card-body">
+                                <a href="{{ route('health_certifications.index') }}" class="btn btn-secondary waves-effect">Quay lại</a>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
                 <!-- end row -->
