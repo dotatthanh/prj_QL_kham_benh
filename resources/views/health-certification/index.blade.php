@@ -143,7 +143,7 @@
                                                                 @endcan
                                                             @else
                                                                 @if (!$health_certification->prescription)
-                                                                    @can('Thêm đơn thuốc')
+                                                                    @can('Kê đơn thuốc')
                                                                     <li class="list-inline-item px">
                                                                         <a href="{{ route('prescriptions.create', ['health_certification_id' => $health_certification->id]) }}" data-toggle="tooltip" data-placement="top" title="Kê đơn thuốc"><i class="bx bxs-calendar-check text-success"></i></a>
                                                                     </li>

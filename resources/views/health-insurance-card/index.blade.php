@@ -82,7 +82,7 @@
                                                     <td>{{ date("d-m-Y", strtotime($health_insurance_card->use_value)) }}</td>
                                                     <td>{{ $health_insurance_card->id_card }}</td>
                                                     <td>{{ date("d-m-Y", strtotime($health_insurance_card->date_of_issue)) }}</td>
-                                                    <td>{{ date("d-m-Y", strtotime($health_insurance_card->issued_by)) }}</td>
+                                                    <td>{{ $health_insurance_card->issued_by }}</td>
                                                     <td class="text-center">
                                                         <ul class="list-inline font-size-20 contact-links mb-0">
                                                             @can('Chỉnh sửa thẻ BHYT')

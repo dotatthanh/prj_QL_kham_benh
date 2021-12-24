@@ -118,6 +118,18 @@
                                         <label class="text-danger font-weight-bold">{{ number_format($data_edit->total_money, 0, ',', '.') }} VNĐ</label>
                                     </div>
 
+                                    <div class="col-sm-2">
+                                        <label>Thanh toán :</label>
+                                    </div>
+
+                                    <div class="col-sm-10">
+                                        @if ($data_edit->payment_status)
+                                            <label class="text-success">Đã thanh toán</label>
+                                        @else
+                                            <label class="text-warning">Chưa thanh toán</label>
+                                        @endif
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
