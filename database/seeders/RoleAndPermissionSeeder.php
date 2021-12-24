@@ -40,6 +40,7 @@ class RoleAndPermissionSeeder extends Seeder
         $admin->givePermissionTo($delete_health_certification);
         $admin->givePermissionTo($conclude_health_certification);
         $admin->givePermissionTo($print_health_certification);
+        $admin->givePermissionTo($list_prescription);
 
         $view_prescription = Permission::create(['name' => 'Xem danh sách đơn thuốc']);
         $view_detail_prescription = Permission::create(['name' => 'Xem thông tin đơn thuốc']);
