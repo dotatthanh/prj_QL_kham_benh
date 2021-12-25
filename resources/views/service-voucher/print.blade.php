@@ -62,13 +62,11 @@
                                     </div>
 
                                     <div class="col-sm-4">
-                                        <div class="custom-control custom-checkbox  custom-checkbox-danger mb-3">
+                                        <div>
                                             @if ($data_edit->is_health_insurance_card)
-                                                <input type="checkbox" class="custom-control-input" id="check_insurance_card" disabled checked>
-                                                <label class="custom-control-label" for="check_insurance_card">Miễn phí dịch vụ khám</label>
+                                                <label>Có</label>
                                             @else
-                                                <input type="checkbox" class="custom-control-input" id="check_insurance_card" disabled>
-                                                <label class="custom-control-label" for="check_insurance_card">Miễn phí dịch vụ khám</label>
+                                                <label>Không</label>
                                             @endif
                                         </div>
                                     </div>
