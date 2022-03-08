@@ -14,15 +14,15 @@ class HealthCertification extends Model
     	'patient_id',
     	'consulting_room_id',
     	'user_id',
-    	'date',
     	'code',
     	'status',
+        'payment_status',
     	'conclude',
     	'treatment_guide',
     	'suggestion',
     	'number',
     	'total_money',
-    	'type',
+        'is_health_insurance_card',
     ];
 
     public function patient()
@@ -38,5 +38,10 @@ class HealthCertification extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function prescription()
+    {
+        return $this->hasOne(Prescription::class);
     }
 }

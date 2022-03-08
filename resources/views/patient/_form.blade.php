@@ -24,7 +24,7 @@
             <label for="birthday">Ngày sinh <span class="text-danger">*</span></label>
             <div class="docs-datepicker">
                 <div class="input-group">
-                    <input type="text" class="form-control docs-date" name="birthday" placeholder="Chọn ngày sinh" autocomplete="off" value="{{ old('birthday', isset($data_edit->gender) ? date('d-m-Y', strtotime($data_edit->birthday)) : '') }}">
+                    <input type="text" class="form-control docs-date" name="birthday" placeholder="Chọn ngày sinh" autocomplete="off" value="{{ old('birthday', isset($data_edit->birthday) ? date('d-m-Y', strtotime($data_edit->birthday)) : '') }}">
                     <div class="input-group-append">
                         <button type="button" class="btn btn-outline-secondary docs-datepicker-trigger" disabled="">
                             <i class="fa fa-calendar" aria-hidden="true"></i>

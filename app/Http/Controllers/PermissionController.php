@@ -59,7 +59,15 @@ class PermissionController extends Controller
      */
     public function show($id)
     {
-        //
+        $role = Role::findOrFail($id);
+        $permissions = Permission::all();
+
+        $data = [
+            'role' => $role,
+            'permissions' => $permissions,
+        ];
+
+        return view('permission.show', $data);
     }
 
     /**

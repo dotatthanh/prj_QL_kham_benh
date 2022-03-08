@@ -17,7 +17,7 @@ class CreateServiceVoucherDetailsTable extends Migration
             $table->id();
             $table->integer('service_voucher_id');
             $table->date('date');
-            $table->string('result');
+            $table->text('result');
             $table->timestamps();
         });
     }

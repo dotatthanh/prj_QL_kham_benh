@@ -64,7 +64,7 @@
                                     <a href="index.html">
                                         <div class="avatar-md profile-user-wid mb-4">
                                             <span class="avatar-title rounded-circle bg-light">
-                                                <img src="{{ asset('images/logo.svg') }}" alt="" class="rounded-circle" height="34">
+                                                <img src="{{ asset('images/logo.jpg') }}" alt="" class="rounded-circle" height="67">
                                             </span>
                                         </div>
                                     </a>
@@ -80,6 +80,7 @@
                                         <div class="form-group">
                                             <label for="useremail">Email</label>
                                             <input type="email" class="form-control" id="useremail" placeholder="Nhập email" value="{{ old('email') }}" name="email" required autofocus>
+                                            {!! $errors->first('email', '<span class="error">:message</span>') !!}
                                         </div>
                     
                                         <div class="form-group row mb-0">

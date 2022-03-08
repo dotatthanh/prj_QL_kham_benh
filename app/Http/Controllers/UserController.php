@@ -8,7 +8,10 @@ use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Http\Requests\ChangePasswordRequest;
 use DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -63,8 +66,8 @@ class UserController extends Controller
             $file_path = '';
             if ($request->file('avatar')) {
                 $name = time().'_'.$request->avatar->getClientOriginalName();
-                $filePath = $request->file('avatar')->storeAs('/avatar/user', $name, 'public');
-                $file_path = 'storage/avatar/user/'.$name;
+                $file_path = 'uploads/avatar/user/'.$name;
+                Storage::disk('public_uploads')->putFileAs('avatar/user', $request->avatar, $name);
             }
             
             $create = User::create([
@@ -146,8 +149,8 @@ class UserController extends Controller
 
             if ($request->file('avatar')) {
                 $name = time().'_'.$request->avatar->getClientOriginalName();
-                $filePath = $request->file('avatar')->storeAs('/avatar/user', $name, 'public');
-                $file_path = 'storage/avatar/user/'.$name;
+                $file_path = 'uploads/avatar/user/'.$name;
+                Storage::disk('public_uploads')->putFileAs('avatar/user', $request->avatar, $name);
                 
                 $user->update([
                     'name' => $request->name,
@@ -214,6 +217,34 @@ class UserController extends Controller
         } catch (Exception $e) {
             DB::rollback();
             return redirect()->back()->with('alert-error','Xóa tài khoản thất bại!');
+        }
+    }
+
+    public function viewChangePassword(User $user) 
+    {
+        $data = [
+            'user' => $user,
+        ];
+
+        return view('user.change-password', $data);
+    }
+
+    public function changePassword(ChangePasswordRequest $request, User $user) 
+    {
+        try {
+            DB::beginTransaction();
+            
+            if (Hash::check($request->password_old, $user->password)) {
+                $user->update([
+                    'password' => Hash::make($request->password),
+                ]);
+            }
+            
+            DB::commit();
+            return redirect()->back()->with('alert-success','Đổi mật khẩu thành công!');
+        } catch (Exception $e) {
+            DB::rollback();
+            return redirect()->back()->with('alert-error','Đổi mật khẩu thất bại!');
         }
     }
 }

@@ -87,6 +87,7 @@
     <script type="text/javascript">
         $('.docs-date').datepicker({
             format: 'dd-mm-yyyy',
+            endDate: new Date(),
         });
     </script>
 @endpush

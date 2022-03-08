@@ -53,6 +53,9 @@
         @yield('css')
         @stack('css')
 
+        <!-- Toastr Css -->
+        <link rel="stylesheet" type="text/css" href="{{ asset('libs\toastr\build\toastr.min.css') }}">
+
         <!-- Bootstrap Css -->
         <link href="{{ asset('css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css">
         <!-- Icons Css -->
@@ -68,6 +71,65 @@
         <script src="{{ asset('libs/metismenu/metisMenu.min.js') }}"></script>
         <script src="{{ asset('libs/simplebar/simplebar.min.js') }}"></script>
         <script src="{{ asset('libs/node-waves/waves.min.js') }}"></script>
+
+        <!-- toastr plugin -->
+        <script src="{{ asset('libs\toastr\build\toastr.min.js') }}"></script>
+
+        <script type="text/javascript">
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            
+            // add class paginate theme
+            $('ul.pagination').addClass('pagination-rounded justify-content-center mt-4');
+            
+            // toastr noti
+            @if(Session::has('alert-success'))
+                Command: toastr["success"]("{{ Session::get('alert-success') }}")
+
+                toastr.options = {
+                  "closeButton": false,
+                  "debug": false,
+                  "newestOnTop": false,
+                  "progressBar": false,
+                  "positionClass": "toast-top-right",
+                  "preventDuplicates": false,
+                  "onclick": null,
+                  "showDuration": 300,
+                  "hideDuration": 1000,
+                  "timeOut": 5000,
+                  "extendedTimeOut": 1000,
+                  "showEasing": "swing",
+                  "hideEasing": "linear",
+                  "showMethod": "fadeIn",
+                  "hideMethod": "fadeOut"
+                }
+            @endif
+
+            @if(Session::has('alert-error'))
+                Command: toastr["error"]("{{ Session::get('alert-error') }}")
+
+                toastr.options = {
+                  "closeButton": false,
+                  "debug": false,
+                  "newestOnTop": false,
+                  "progressBar": false,
+                  "positionClass": "toast-top-right",
+                  "preventDuplicates": false,
+                  "onclick": null,
+                  "showDuration": 300,
+                  "hideDuration": 1000,
+                  "timeOut": 5000,
+                  "extendedTimeOut": 1000,
+                  "showEasing": "swing",
+                  "hideEasing": "linear",
+                  "showMethod": "fadeIn",
+                  "hideMethod": "fadeOut"
+                }
+            @endif
+        </script>
 
         @yield('js')
         @stack('js')

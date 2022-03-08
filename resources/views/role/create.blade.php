@@ -16,7 +16,8 @@
 
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item"><a href="{{ route('roles.index') }}" title="Quản lý vai trò" data-toggle="tooltip" data-placement="top">Quản lý vai trò</a></li>
+                                    <li class="breadcrumb-item">Cài đặt</li>
+                                    <li class="breadcrumb-item"><a href="{{ route('roles.index') }}" title="Quản lý vai trò" data-toggle="tooltip" data-placement="top">Vai trò</a></li>
                                     <li class="breadcrumb-item active">Thêm vai trò</li>
                                 </ol>
                             </div>
