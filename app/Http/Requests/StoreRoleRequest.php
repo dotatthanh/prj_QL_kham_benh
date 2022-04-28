@@ -24,7 +24,7 @@ class StoreRoleRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:255', 
+            'name' => 'required|max:255|unique:roles', 
         ];
     }
 
@@ -33,6 +33,7 @@ class StoreRoleRequest extends FormRequest
         return [
             'name.required' => 'Tên vai trò là trường bắt buộc.', 
             'name.max' => 'Tên vai trò không được dài quá :max ký tự.', 
+            'name.unique' => 'Tên vai trò đã tồn tại.', 
         ];
     }
 }
