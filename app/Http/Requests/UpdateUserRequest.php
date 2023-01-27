@@ -35,6 +35,7 @@ class UpdateUserRequest extends FormRequest
             'phone' => 'required|size:10',
             'address' => 'required',
             'roles' => 'required',
+            'avatar' => 'mimes:pdf,jpg,jpeg,png,bmp,gif,svg,webp,mp3,mp4|max:8000',
         ];
     }
 
@@ -55,6 +56,8 @@ class UpdateUserRequest extends FormRequest
             'email.string' => 'Email phải là một chuỗi.',
             'email.max' => 'Email không được dài quá :max ký tự.',
             'roles.required' => 'Vai trò là trường bắt buộc.', 
+            'avatar.mimes' => 'Ảnh đại diện không đúng định dạng (jpg, jpeg, png, bmp, gif, svg, pdf, mp3, mp4 hoặc webp).',
+            'avatar.max' => 'Ảnh đại diện không được lớn hơn 8MB.',
         ];
     }
 }

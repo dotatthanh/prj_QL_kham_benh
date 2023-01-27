@@ -32,6 +32,7 @@ class StoreUserRequest extends FormRequest
             'address' => 'required',
             'roles' => 'required',
             'password' => 'required|confirmed|min:8|string',
+            'avatar' => 'mimes:pdf,jpg,jpeg,png,bmp,gif,svg,webp,mp3,mp4|max:8000',
         ];
     }
 
@@ -56,6 +57,8 @@ class StoreUserRequest extends FormRequest
             'password.confirmed' => 'Xác nhận mật khẩu không chính xác!',
             'password.min' => 'Mật khẩu phải có ít nhất 8 ký tự!',
             'password.string' => 'Mật khẩu phải là một chuỗi',
+            'avatar.mimes' => 'Ảnh đại diện không đúng định dạng (jpg, jpeg, png, bmp, gif, svg, pdf, mp3, mp4 hoặc webp).',
+            'avatar.max' => 'Ảnh đại diện không được lớn hơn 8MB.',
         ];
     }
 }

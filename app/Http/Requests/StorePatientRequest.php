@@ -29,6 +29,7 @@ class StorePatientRequest extends FormRequest
             'birthday' => 'required|date',
             'phone' => 'required|size:10',
             'address' => 'required',
+            'avatar' => 'mimes:pdf,jpg,jpeg,png,bmp,gif,svg,webp,mp3,mp4|max:8000',
         ];
     }
 
@@ -43,6 +44,8 @@ class StorePatientRequest extends FormRequest
             'phone.required' => 'Số điện thoại là trường bắt buộc.',
             'phone.size' => 'Số điện thoại phải là :size số.',
             'address.required' => 'Địa chỉ là trường bắt buộc.',
+            'avatar.mimes' => 'Ảnh đại diện không đúng định dạng (jpg, jpeg, png, bmp, gif, svg, pdf, mp3, mp4 hoặc webp).',
+            'avatar.max' => 'Ảnh đại diện không được lớn hơn 8MB.',
         ];
     }
 }
